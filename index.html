@@ -7,11 +7,79 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton:wght@200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
-<body class="min-h-screen">
-    <main class="min-h-screen flex items-center justify-center">
-        <h1 class="text-blue-500 text-7xl">Hello World</h1>
+<body class="min-h-screen bg-greybg antialiased">
+    <header class="h-[45dvh] relative">
+        <img src="assets/hero.jpeg" alt="bannière" class="object-cover w-full h-full">
+        <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center p-10">
+            <h1 class="text-primary text-center font-anton tracking-normal text-[44px] max-w-4xl">
+                CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
+            </h1>
+            <div class="w-full max-w-5xl mt-6 relative flex flex-col items-center justify-center">
+                <input type="text" class="w-full rounded-xl h-16 relative p-7 placeholder:font-sans placeholder:text-greytext placeholder:text-base text-greytext" placeholder="Rechercher une recette, un ingrédient, ...">
+                <button class="absolute right-2 bg-iconBlack z-10 h-12 w-12 text-white rounded-xl flex items-center justify-center">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="10" r="9.5" stroke="white"/>
+                        <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <img src="assets/Logo.png" alt="logo" class="absolute top-[51px] left-[69px] w-52">
+        
+    </header>
+    <main class="min-h-screen">
+        <div>
+
+        </div>
+        <section class="flex flex-wrap justify-between gap-4 px-28 py-16">
+            <article class="bg-white h-[730px] w-96 rounded-3xl shadow-xl relative">
+                <div class="h-full flex flex-col">
+                    <img src="assets/images/Recette01.jpg" alt="recette" class="rounded-t-3xl h-64 w-full object-cover flex">
+                    <div class="p-6 pb-14 flex flex-col flex-1 justify-between">
+                        <h2 class="font-anton font-normal text-lg text-black mb-6">Limonade de Coco</h2>
+                        <div class="mb-6">
+                            <h3 class="text-greytext font-bold text-xs tracking-[.08rem] mb-4">RECETTE</h3>
+                            <p class="text-sm font-normal text-black line-clamp-4">
+                                Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
+                            </p>
+                        </div>
+                        <div class="">
+                            <h3 class="text-greytext font-bold text-xs tracking-[.08rem] mb-4">INGRÉDIENTS</h3>
+                            <div class="flex flex-wrap gap-6 max-h-48 overflow-y-scroll">
+                                <div class="w-[calc(50%_-_48px)]">
+                                    <h4 class="text-sm text-iconBlack font-medium">Lait de coco</h4>
+                                    <p class="text-sm font-normal text-greytext">400ml</p>
+                                </div>
+                                <div class="w-[calc(50%_-_48px)]">
+                                    <h4 class="text-sm text-iconBlack font-medium">Jus de citron</h4>
+                                    <p class="text-sm font-normal text-greytext">2</p>
+                                </div>
+                                <div class="w-[calc(50%_-_48px)]">
+                                    <h4 class="text-sm text-iconBlack font-medium">Crème de coco</h4>
+                                    <p class="text-sm font-normal text-greytext">4 cuillères</p>
+                                </div>
+                                <div class="w-[calc(50%_-_48px)]">
+                                    <h4 class="text-sm text-iconBlack font-medium">Sucre</h4>
+                                    <p class="text-sm font-normal text-greytext">20g</p>
+                                </div>
+                                <div class="w-[calc(50%_-_48px)]">
+                                    <h4 class="text-sm text-iconBlack font-medium">Glaçons</h4>
+                                    <p class="text-sm font-normal text-greytext">2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex absolute top-6 right-6">
+                    <p class="bg-primary rounded-full px-6 py-2 text-iconBlack">10mn</p>
+                </div>
+            </article>
+            <div class="bg-white h-[730px] w-96 rounded-3xl shadow-xl"></div>
+            <div class="bg-white h-[730px] w-96 rounded-3xl shadow-xl"></div>
+        </section>
     </main>
+    <script type="module" src="index.js"></script>
 </body>
 </html>
