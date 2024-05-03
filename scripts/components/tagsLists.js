@@ -54,6 +54,104 @@ export function diplayTagsListsDOM() {
             DOMUstensilsTagsList.appendChild(ustensilTag);
         });
     }
+
+    const filterIngredientsInput = document.getElementById(
+        "filter_ingredients_input"
+    );
+    const clearIngredientsInputButton = document.getElementById(
+        "clear_ingredient_tag_input"
+    );
+    filterIngredientsInput.addEventListener("input", (event) => {
+        const filteredIngredients = ingredientsTags.filter((ingredient) =>
+            ingredient.toLowerCase().includes(event.target.value.toLowerCase())
+        );
+
+        DOMIngredientsTagsList.innerHTML = "";
+        filteredIngredients.forEach((ingredient) => {
+            const ingredientTag = createTagItem(ingredient, "ingredient");
+
+            DOMIngredientsTagsList.appendChild(ingredientTag);
+        });
+        if (event.target.value.length > 0)
+            clearIngredientsInputButton.classList.remove("hidden");
+    });
+
+    clearIngredientsInputButton.addEventListener("click", () => {
+        filterIngredientsInput.value = "";
+        DOMIngredientsTagsList.innerHTML = "";
+        ingredientsTags.forEach((ingredient) => {
+            const ingredientTag = createTagItem(ingredient, "ingredient");
+
+            DOMIngredientsTagsList.appendChild(ingredientTag);
+        });
+        clearIngredientsInputButton.classList.add("hidden");
+    });
+
+    const filterApplianceInput = document.getElementById(
+        "filter_appliance_input"
+    );
+    const clearApplianceInputButton = document.getElementById(
+        "clear_appliance_tag_input"
+    );
+
+    filterApplianceInput.addEventListener("input", (event) => {
+        const filteredAppliances = applianceTags.filter((appliance) =>
+            appliance.toLowerCase().includes(event.target.value.toLowerCase())
+        );
+
+        DOMApplianceTagsList.innerHTML = "";
+        filteredAppliances.forEach((appliance) => {
+            const applianceTag = createTagItem(appliance, "appliance");
+
+            DOMApplianceTagsList.appendChild(applianceTag);
+        });
+        if (event.target.value.length > 0)
+            clearApplianceInputButton.classList.remove("hidden");
+    });
+
+    clearApplianceInputButton.addEventListener("click", () => {
+        filterApplianceInput.value = "";
+        DOMApplianceTagsList.innerHTML = "";
+        applianceTags.forEach((appliance) => {
+            const applianceTag = createTagItem(appliance, "appliance");
+
+            DOMApplianceTagsList.appendChild(applianceTag);
+        });
+        clearApplianceInputButton.classList.add("hidden");
+    });
+
+    const filterUstensilsInput = document.getElementById(
+        "filter_ustensils_input"
+    );
+    const clearUstensilsInputButton = document.getElementById(
+        "clear_ustensils_tag_input"
+    );
+    filterUstensilsInput.addEventListener("input", (event) => {
+        const filteredUstensils = ustensilsTags.filter((ustensil) =>
+            ustensil.toLowerCase().includes(event.target.value.toLowerCase())
+        );
+
+        DOMUstensilsTagsList.innerHTML = "";
+        filteredUstensils.forEach((ustensil) => {
+            const ustensilTag = createTagItem(ustensil, "ustensil");
+
+            DOMUstensilsTagsList.appendChild(ustensilTag);
+        });
+        if (event.target.value.length > 0)
+            clearUstensilsInputButton.classList.remove("hidden");
+    });
+
+    clearUstensilsInputButton.addEventListener("click", () => {
+        filterUstensilsInput.value = "";
+        DOMUstensilsTagsList.innerHTML = "";
+        ustensilsTags.forEach((ustensil) => {
+            const ustensilTag = createTagItem(ustensil, "ustensil");
+
+            DOMUstensilsTagsList.appendChild(ustensilTag);
+        });
+        clearUstensilsInputButton.classList.add("hidden");
+    });
+
     oldIngredientsTagsList = ingredientsTags;
     oldApplianceTagsList = applianceTags;
     oldUstensilsTagsList = ustensilsTags;
