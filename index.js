@@ -9,24 +9,30 @@ const recipes = getFilteredRecipes();
 displayRecipes(recipes);
 diplayTagsListsDOM();
 manageLists();
-// console.log("index", searchObject);
 
 const DOMSearchField = document.getElementById("search_field");
 
+let dedupInput = null;
+
 DOMSearchField.addEventListener("input", () => {
-    toggleSearchIcon(DOMSearchField.value.length >= 3);
-    if (DOMSearchField.value.length >= 3) {
-        searchObject.setSearchField(DOMSearchField.value);
+    clearTimeout(dedupInput);
+
+    dedupInput = setTimeout(() => {
+        toggleSearchIcon(DOMSearchField.value.length >= 3);
+
+        if (DOMSearchField.value.length >= 3) {
+            searchObject.setSearchField(DOMSearchField.value);
+            searchObject.setTagsLists();
+            diplayTagsListsDOM();
+            const filteredRecipes = getFilteredRecipes();
+            displayRecipes(filteredRecipes);
+            return;
+        }
+
+        searchObject.setSearchField("");
         searchObject.setTagsLists();
         diplayTagsListsDOM();
         const filteredRecipes = getFilteredRecipes();
         displayRecipes(filteredRecipes);
-        return;
-    }
-
-    const filteredRecipes = getFilteredRecipes();
-    searchObject.setSearchField("");
-    searchObject.setTagsLists();
-    diplayTagsListsDOM();
-    displayRecipes(filteredRecipes);
+    }, 500);
 });
