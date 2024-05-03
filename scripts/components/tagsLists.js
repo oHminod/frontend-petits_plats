@@ -1,4 +1,5 @@
 import { searchObject } from "../utils/searchObject.js";
+import { createSelectedTagDOM } from "./selectedTagFactory.js";
 import { createTagItem } from "./tagItemFactory.js";
 
 let oldIngredientsTagsList = [];
@@ -79,4 +80,23 @@ export function needToRender() {
         stringifiedApplianceTags !== stringifiedOldApplianceTagsList ||
         stringifiedUstensilsTags !== stringifiedOldUstensilsTagsList
     );
+}
+
+export function displaySelectedTags() {
+    const tagsSection = document.getElementById("selected_tags_section");
+    const tagSectionContainer = document.createElement("div");
+    tagSectionContainer.className =
+        "flex flex-wrap gap-6 items-center px-28 pt-6";
+    const selectedTags = searchObject.selectedTabs;
+
+    tagsSection.innerHTML = "";
+    if (selectedTags.length === 0) return;
+
+    selectedTags.forEach((tag) => {
+        const tagItem = createSelectedTagDOM(tag);
+
+        tagSectionContainer.appendChild(tagItem);
+    });
+
+    tagsSection.appendChild(tagSectionContainer);
 }

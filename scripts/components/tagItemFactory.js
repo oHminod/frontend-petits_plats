@@ -1,7 +1,7 @@
 import { searchObject } from "../utils/searchObject.js";
 import { getFilteredRecipes } from "../utils/sortAndFilter.js";
 import { displayRecipes } from "./cardsSection.js";
-import { diplayTagsListsDOM, needToRender } from "./tagsLists.js";
+import { diplayTagsListsDOM, displaySelectedTags } from "./tagsLists.js";
 
 export function createTagItem(tag, type) {
     const tagLi = document.createElement("li");
@@ -46,6 +46,7 @@ export function createTagItem(tag, type) {
                 searchObject.addIngredientTag(tag);
                 const noNeedRender = !handlestaticEvents();
                 if (noNeedRender) searchObject.removeIngredientTag(tag);
+                if (!noNeedRender) displaySelectedTags();
             }
             e.stopPropagation();
         });
@@ -60,6 +61,7 @@ export function createTagItem(tag, type) {
                 e.stopPropagation();
                 searchObject.removeIngredientTag(tag.toLowerCase());
                 handlestaticEvents();
+                displaySelectedTags();
             });
         }
     }
@@ -70,6 +72,7 @@ export function createTagItem(tag, type) {
                 searchObject.addApplianceTag(tag);
                 const noNeedRender = !handlestaticEvents();
                 if (noNeedRender) searchObject.removeApplianceTag(tag);
+                if (!noNeedRender) displaySelectedTags();
             }
         });
         if (searchObject.applianceTags.includes(tag.toLowerCase())) {
@@ -83,6 +86,7 @@ export function createTagItem(tag, type) {
                 e.stopPropagation();
                 searchObject.removeApplianceTag(tag.toLowerCase());
                 handlestaticEvents();
+                displaySelectedTags();
             });
         }
     }
@@ -93,6 +97,7 @@ export function createTagItem(tag, type) {
                 searchObject.addUstensilsTag(tag);
                 const noNeedRender = !handlestaticEvents();
                 if (noNeedRender) searchObject.removeUstensilsTag(tag);
+                if (!noNeedRender) displaySelectedTags();
             }
         });
         if (searchObject.ustensilsTags.includes(tag.toLowerCase())) {
@@ -106,6 +111,7 @@ export function createTagItem(tag, type) {
                 e.stopPropagation();
                 searchObject.removeUstensilsTag(tag.toLowerCase());
                 handlestaticEvents();
+                displaySelectedTags();
             });
         }
     }

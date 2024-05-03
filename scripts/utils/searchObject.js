@@ -13,7 +13,6 @@ export const searchObject = {
         this.searchField = tag;
     },
     addIngredientTag(tag) {
-        const filteredRecipes = getFilteredRecipes();
         if (!this.ingredientTags.includes(tag.toLowerCase())) {
             this.ingredientTags.push(tag.toLowerCase());
             this.selectedTabs.push(tag.toLowerCase());
@@ -83,16 +82,16 @@ export const searchObject = {
     },
     removeSelectedTag(tag) {
         this.selectedTabs = this.selectedTabs.filter(
-            (selectedTab) => selectedTab !== tag
+            (selectedTab) => selectedTab !== tag.toLowerCase()
         );
-        if (this.ingredientTags.includes(tag)) {
-            this.removeIngredientTag(tag);
+        if (this.ingredientTags.includes(tag.toLowerCase())) {
+            this.removeIngredientTag(tag.toLowerCase());
         }
-        if (this.applianceTags.includes(tag)) {
-            this.removeApplianceTag(tag);
+        if (this.applianceTags.includes(tag.toLowerCase())) {
+            this.removeApplianceTag(tag.toLowerCase());
         }
-        if (this.ustensilsTags.includes(tag)) {
-            this.removeUstensilsTag(tag);
+        if (this.ustensilsTags.includes(tag.toLowerCase())) {
+            this.removeUstensilsTag(tag.toLowerCase());
         }
     },
 };
