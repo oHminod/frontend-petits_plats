@@ -8,20 +8,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a932248228.js" crossorigin="anonymous"></script>    
 </head>
 <body class="min-h-screen bg-greybg antialiased">
     <header class="h-[45dvh] relative">
         <img src="assets/hero.jpeg" alt="bannière" class="object-cover w-full h-full">
         <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center p-10">
-            <h1 class="text-primary text-center font-anton tracking-normal text-[44px] max-w-4xl">
+            <h1 id="titre" class="text-primary text-center font-anton tracking-normal text-[44px] max-w-4xl">
                 CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
             </h1>
             <div class="w-full max-w-5xl mt-6 relative flex flex-col items-center justify-center">
-                <input type="text" class="w-full rounded-xl h-16 relative p-7 placeholder:font-sans placeholder:text-greytext placeholder:text-base text-greytext" placeholder="Rechercher une recette, un ingrédient, ...">
-                <button class="absolute right-2 bg-iconBlack z-10 h-12 w-12 text-white rounded-xl flex items-center justify-center">
+                <input id="search_field" type="text" class="w-full rounded-xl h-16 relative p-7 placeholder:font-sans placeholder:text-greytext placeholder:text-base text-greytext" placeholder="Rechercher une recette, un ingrédient, ...">
+                <button id="search_button" class="absolute right-2 bg-iconBlack z-10 h-12 w-12 text-white rounded-xl flex items-center justify-center">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="10" cy="10" r="9.5" stroke="white"/>
-                        <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="white"/>
+                        <circle id="icon_part1" cx="10" cy="10" r="9.5" stroke="white"/>
+                        <line id="icon_part2" x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="white"/>
                     </svg>
                 </button>
             </div>
@@ -30,55 +31,88 @@
         
     </header>
     <main class="min-h-screen">
-        <div>
-
-        </div>
-        <section class="flex flex-wrap justify-between gap-4 px-28 py-16">
-            <article class="bg-white h-[730px] w-96 rounded-3xl shadow-xl relative">
-                <div class="h-full flex flex-col">
-                    <img src="assets/images/Recette01.jpg" alt="recette" class="rounded-t-3xl h-64 w-full object-cover flex">
-                    <div class="p-6 pb-14 flex flex-col flex-1 justify-between">
-                        <h2 class="font-anton font-normal text-lg text-black mb-6">Limonade de Coco</h2>
-                        <div class="mb-6">
-                            <h3 class="text-greytext font-bold text-xs tracking-[.08rem] mb-4">RECETTE</h3>
-                            <p class="text-sm font-normal text-black line-clamp-4">
-                                Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.
-                            </p>
+        <div class="flex items-center justify-between px-28 pt-8">
+            <div class="flex items-center gap-16">
+                <div class="relative inline-block select-none">
+                    <button class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                        <span id="selected_option">Ingrédients</span>
+                        <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
+                    </button>
+                    <div class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll">
+                        <div class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5">
+                            <h2>Ingrédients</h2>
+                            <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
                         </div>
-                        <div class="">
-                            <h3 class="text-greytext font-bold text-xs tracking-[.08rem] mb-4">INGRÉDIENTS</h3>
-                            <div class="flex flex-wrap gap-6 max-h-48 overflow-y-scroll">
-                                <div class="w-[calc(50%_-_48px)]">
-                                    <h4 class="text-sm text-iconBlack font-medium">Lait de coco</h4>
-                                    <p class="text-sm font-normal text-greytext">400ml</p>
-                                </div>
-                                <div class="w-[calc(50%_-_48px)]">
-                                    <h4 class="text-sm text-iconBlack font-medium">Jus de citron</h4>
-                                    <p class="text-sm font-normal text-greytext">2</p>
-                                </div>
-                                <div class="w-[calc(50%_-_48px)]">
-                                    <h4 class="text-sm text-iconBlack font-medium">Crème de coco</h4>
-                                    <p class="text-sm font-normal text-greytext">4 cuillères</p>
-                                </div>
-                                <div class="w-[calc(50%_-_48px)]">
-                                    <h4 class="text-sm text-iconBlack font-medium">Sucre</h4>
-                                    <p class="text-sm font-normal text-greytext">20g</p>
-                                </div>
-                                <div class="w-[calc(50%_-_48px)]">
-                                    <h4 class="text-sm text-iconBlack font-medium">Glaçons</h4>
-                                    <p class="text-sm font-normal text-greytext">2</p>
-                                </div>
+                        <div class="px-5">
+                            <div class="relative">
+                                <input type="text" class="w-full h-9 border border-greySearch rounded-sm p-2 pr-11 text-greytext text-sm">
+                                <svg id="select_ingredient_tag" class="absolute right-[11px] top-[11px] hover:cursor-pointer" width="14" height="14" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="9.5" stroke="#7A7A7A"/>
+                                    <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="#7A7A7A"/>
+                                </svg>
+                                <svg id="clear_ingredient_tag_input" class="absolute top-[15px] right-[35px] hover:cursor-pointer" width="6" height="6" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </div>
                         </div>
+                        <ul id="ingredients_tags_list" class="py-[18px]"></ul>
                     </div>
                 </div>
-                <div class="flex absolute top-6 right-6">
-                    <p class="bg-primary rounded-full px-6 py-2 text-iconBlack">10mn</p>
+
+                <div class="relative inline-block select-none">
+                    <button class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                        <span id="selected_option">Appareils</span>
+                        <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
+                    </button>
+                    <div class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll">
+                        <div class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5">
+                            <h2>Appareils</h2>
+                            <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
+                        </div>
+                        <div class="px-5">
+                            <div class="relative">
+                                <input type="text" class="w-full h-9 border border-greySearch rounded-sm p-2 pr-11 text-greytext text-sm">
+                                <svg id="select_ingredient_tag" class="absolute right-[11px] top-[11px] hover:cursor-pointer" width="14" height="14" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="9.5" stroke="#7A7A7A"/>
+                                    <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="#7A7A7A"/>
+                                </svg>
+                                <svg id="clear_ingredient_tag_input" class="absolute top-[15px] right-[35px] hover:cursor-pointer" width="6" height="6" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <ul id="appliance_tags_list" class="py-[18px]"></ul>
+                    </div>
                 </div>
-            </article>
-            <div class="bg-white h-[730px] w-96 rounded-3xl shadow-xl"></div>
-            <div class="bg-white h-[730px] w-96 rounded-3xl shadow-xl"></div>
-        </section>
+                <div class="relative inline-block select-none">
+                    <button class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                        <span id="selected_option">Ustensiles</span>
+                        <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
+                    </button>
+                    <div class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll">
+                        <div class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5">
+                            <h2>Ustensiles</h2>
+                            <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
+                        </div>
+                        <div class="px-5">
+                            <div class="relative">
+                                <input type="text" class="w-full h-9 border border-greySearch rounded-sm p-2 pr-11 text-greytext text-sm">
+                                <svg id="select_ingredient_tag" class="absolute right-[11px] top-[11px] hover:cursor-pointer" width="14" height="14" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="9.5" stroke="#7A7A7A"/>
+                                    <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="#7A7A7A"/>
+                                </svg>
+                                <svg id="clear_ingredient_tag_input" class="absolute top-[15px] right-[35px] hover:cursor-pointer" width="6" height="6" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <ul id="ustensils_tags_list" class="py-[18px]"></ul>
+                    </div>
+                </div>
+            </div>
+            <h2 id="total_recipes_number" class="font-anton text-xl">1500 recettes</h2>
+        </div>
+        <section id="recipes_section" class="flex flex-wrap justify-between gap-4 px-28 py-16"></section>
     </main>
     <script type="module" src="index.js"></script>
 </body>
