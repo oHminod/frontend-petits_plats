@@ -1,3 +1,5 @@
+import { searchObject } from "./searchObject.js";
+
 export function toggleSearchIcon(searching) {
     const searchButton = document.getElementById("search_button");
     const iconPart1 = document.getElementById("icon_part1");
@@ -17,7 +19,6 @@ export function toggleSearchIcon(searching) {
 }
 
 function toggleIngredientsList() {
-    console.log("toggleIngredientsList");
     const ingredientsList = document.getElementById("ingredients_list");
     const ingredientsListIsHidden =
         ingredientsList.classList.contains("hidden");

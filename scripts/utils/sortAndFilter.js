@@ -6,7 +6,6 @@ export function getFilteredRecipes() {
     const applianceTags = searchObject.applianceTags;
     const ustensilsTags = searchObject.ustensilsTags;
     const searchField = searchObject.searchField;
-    console.log(ingredientTags);
 
     const result = recipes.filter((recipe) =>
         filterRecipe(

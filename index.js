@@ -9,6 +9,7 @@ const recipes = getFilteredRecipes();
 displayRecipes(recipes);
 diplayTagsListsDOM();
 manageLists();
+// console.log("index", searchObject);
 
 const DOMSearchField = document.getElementById("search_field");
 
@@ -22,8 +23,10 @@ DOMSearchField.addEventListener("input", () => {
         displayRecipes(filteredRecipes);
         return;
     }
+
+    const filteredRecipes = getFilteredRecipes();
     searchObject.setSearchField("");
     searchObject.setTagsLists();
     diplayTagsListsDOM();
-    displayRecipes(recipes);
+    displayRecipes(filteredRecipes);
 });

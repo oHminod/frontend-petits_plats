@@ -13,45 +13,50 @@ export const searchObject = {
         this.searchField = tag;
     },
     addIngredientTag(tag) {
-        this.ingredientTags.push(tag);
-        this.selectedTabs.push(tag);
+        const filteredRecipes = getFilteredRecipes();
+        if (!this.ingredientTags.includes(tag.toLowerCase())) {
+            this.ingredientTags.push(tag.toLowerCase());
+            this.selectedTabs.push(tag.toLowerCase());
+        }
     },
     addApplianceTag(tag) {
-        this.applianceTags.push(tag);
-        this.selectedTabs.push(tag);
+        if (!this.applianceTags.includes(tag.toLowerCase())) {
+            this.applianceTags.push(tag.toLowerCase());
+            this.selectedTabs.push(tag.toLowerCase());
+        }
     },
     addUstensilsTag(tag) {
-        this.ustensilsTags.push(tag);
-        this.selectedTabs.push(tag);
+        if (!this.ustensilsTags.includes(tag.toLowerCase())) {
+            this.ustensilsTags.push(tag.toLowerCase());
+            this.selectedTabs.push(tag.toLowerCase());
+        }
     },
     removeIngredientTag(tag) {
         this.ingredientTags = this.ingredientTags.filter(
-            (ingredient) => ingredient !== tag
+            (ingredient) => ingredient !== tag.toLowerCase()
         );
         this.selectedTabs = this.selectedTabs.filter(
-            (selectedTab) => selectedTab !== tag
+            (selectedTab) => selectedTab !== tag.toLowerCase()
         );
     },
     removeApplianceTag(tag) {
         this.applianceTags = this.applianceTags.filter(
-            (appliance) => appliance !== tag
+            (appliance) => appliance !== tag.toLowerCase()
         );
         this.selectedTabs = this.selectedTabs.filter(
-            (selectedTab) => selectedTab !== tag
+            (selectedTab) => selectedTab !== tag.toLowerCase()
         );
     },
     removeUstensilsTag(tag) {
         this.ustensilsTags = this.ustensilsTags.filter(
-            (ustensil) => ustensil !== tag
+            (ustensil) => ustensil !== tag.toLowerCase()
         );
         this.selectedTabs = this.selectedTabs.filter(
-            (selectedTab) => selectedTab !== tag
+            (selectedTab) => selectedTab !== tag.toLowerCase()
         );
     },
     setTagsLists() {
-        console.log("setTagsLists");
         const filteredRecipes = getFilteredRecipes();
-        console.log("filterRecipe", filteredRecipes);
 
         this.ingredientTagsList = filteredRecipes.reduce((acc, recipe) => {
             recipe.ingredients.forEach((ingredient) => {
@@ -75,5 +80,19 @@ export const searchObject = {
             });
             return acc;
         }, []);
+    },
+    removeSelectedTag(tag) {
+        this.selectedTabs = this.selectedTabs.filter(
+            (selectedTab) => selectedTab !== tag
+        );
+        if (this.ingredientTags.includes(tag)) {
+            this.removeIngredientTag(tag);
+        }
+        if (this.applianceTags.includes(tag)) {
+            this.removeApplianceTag(tag);
+        }
+        if (this.ustensilsTags.includes(tag)) {
+            this.removeUstensilsTag(tag);
+        }
     },
 };

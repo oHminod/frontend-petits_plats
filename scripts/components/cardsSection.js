@@ -2,7 +2,6 @@ import { createRecipeCard } from "./cardFactory.js";
 
 let oldRecipes = [];
 export function displayRecipes(recipes) {
-    console.log("displayRecipes");
     const recipeSection = document.getElementById("recipes_section");
     const stringifiedRecipes = JSON.stringify(recipes);
     const stringifiedOldRecipes = JSON.stringify(oldRecipes);
