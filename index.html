@@ -34,12 +34,12 @@
         <div class="flex items-center justify-between px-28 pt-8">
             <div class="flex items-center gap-16">
                 <div class="relative inline-block select-none">
-                    <button class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                    <button id="trigger_ingredtients_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
                         <span id="selected_option">Ingrédients</span>
                         <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
-                    <div class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll">
-                        <div class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5">
+                    <div id="ingredients_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll hidden">
+                        <div id="close_ingredients_trigger" class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5 hover:cursor-pointer">
                             <h2>Ingrédients</h2>
                             <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
                         </div>
@@ -60,12 +60,12 @@
                 </div>
 
                 <div class="relative inline-block select-none">
-                    <button class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                    <button id="trigger_appliance_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
                         <span id="selected_option">Appareils</span>
                         <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
-                    <div class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll">
-                        <div class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5">
+                    <div id="appliance_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll hidden">
+                        <div id="close_appliance_trigger" class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5 hover:cursor-pointer">
                             <h2>Appareils</h2>
                             <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
                         </div>
@@ -85,12 +85,12 @@
                     </div>
                 </div>
                 <div class="relative inline-block select-none">
-                    <button class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                    <button  id="trigger_ustensils_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
                         <span id="selected_option">Ustensiles</span>
                         <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
-                    <div class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll">
-                        <div class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5">
+                    <div id="ustensils_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll hidden">
+                        <div id="close_ustensils_trigger" class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5 hover:cursor-pointer">
                             <h2>Ustensiles</h2>
                             <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
                         </div>

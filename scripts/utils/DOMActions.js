@@ -15,3 +15,71 @@ export function toggleSearchIcon(searching) {
         iconPart2.setAttribute("stroke", "white");
     }
 }
+
+function toggleIngredientsList() {
+    console.log("toggleIngredientsList");
+    const ingredientsList = document.getElementById("ingredients_list");
+    const ingredientsListIsHidden =
+        ingredientsList.classList.contains("hidden");
+
+    if (ingredientsListIsHidden) {
+        ingredientsList.classList.remove("hidden");
+        return;
+    } else {
+        ingredientsList.classList.add("hidden");
+    }
+}
+
+function toggleAppliancesList() {
+    const applianceList = document.getElementById("appliance_list");
+    const appliancesListIsHidden = applianceList.classList.contains("hidden");
+
+    if (appliancesListIsHidden) {
+        applianceList.classList.remove("hidden");
+        return;
+    } else {
+        applianceList.classList.add("hidden");
+    }
+}
+
+function toggleUstensilsList() {
+    const ustensilsList = document.getElementById("ustensils_list");
+    const ustensilsListIsHidden = ustensilsList.classList.contains("hidden");
+
+    if (ustensilsListIsHidden) {
+        ustensilsList.classList.remove("hidden");
+        return;
+    } else {
+        ustensilsList.classList.add("hidden");
+    }
+}
+
+export function manageLists() {
+    const ingredientsListtrigger = document.getElementById(
+        "trigger_ingredtients_list"
+    );
+    const applianceListtrigger = document.getElementById(
+        "trigger_appliance_list"
+    );
+    const ustensilsListtrigger = document.getElementById(
+        "trigger_ustensils_list"
+    );
+    const closeIngredientsListTrigger = document.getElementById(
+        "close_ingredients_trigger"
+    );
+    const closeApplianceListTrigger = document.getElementById(
+        "close_appliance_trigger"
+    );
+    const closeUstensilsListTrigger = document.getElementById(
+        "close_ustensils_trigger"
+    );
+    ingredientsListtrigger.addEventListener("click", toggleIngredientsList);
+    applianceListtrigger.addEventListener("click", toggleAppliancesList);
+    ustensilsListtrigger.addEventListener("click", toggleUstensilsList);
+    closeIngredientsListTrigger.addEventListener(
+        "click",
+        toggleIngredientsList
+    );
+    closeApplianceListTrigger.addEventListener("click", toggleAppliancesList);
+    closeUstensilsListTrigger.addEventListener("click", toggleUstensilsList);
+}
