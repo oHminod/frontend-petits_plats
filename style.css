@@ -1057,6 +1057,10 @@ video {
   min-height: 100vh;
 }
 
+.min-h-full {
+  min-height: 100%;
+}
+
 .w-12 {
   width: 3rem;
 }
