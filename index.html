@@ -14,14 +14,14 @@
     <header class="h-[45dvh] relative">
         <img src="assets/hero.jpeg" alt="bannière" class="object-cover w-full h-full">
         <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center p-10">
-            <h1 id="titre" class="text-primary text-center font-anton tracking-normal text-[44px] max-w-4xl">
+            <h1 id="titre" class="text-primary text-center font-anton tracking-normal text-[44px] max-w-[890px] lg:px-24">
                 CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
             </h1>
-            <div class="w-full max-w-5xl mt-6 relative flex flex-col items-center justify-center">
-                <input id="search_field" type="text" class="w-full rounded-xl h-16 relative p-7 placeholder:font-sans placeholder:text-greytext placeholder:text-base text-greytext" placeholder="Rechercher une recette, un ingrédient, ...">
-                <button id="search_button" class="absolute right-2 bg-iconBlack z-10 h-12 w-12 text-white rounded-xl flex items-center justify-center">
+            <div class="w-full max-w-[954px] mt-7 relative flex flex-col items-center justify-center">
+                <input id="search_field" type="text" class="w-full rounded-xl h-[72px] relative p-7 placeholder:font-sans placeholder:text-greytext placeholder:text-base text-greytext" placeholder="Rechercher une recette, un ingrédient, ...">
+                <button id="search_button" class="absolute right-[10px] bg-iconBlack z-10 h-[52px] w-[52px] text-white rounded-xl flex items-center justify-center">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle id="icon_part1" cx="10" cy="10" r="9.5" stroke="white"/>
+                        <circle id="icon_part1" cx="10" cy="10" r="10" stroke="white"/>
                         <line id="icon_part2" x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="white"/>
                     </svg>
                 </button>
@@ -31,15 +31,15 @@
         
     </header>
     <main class="min-h-screen">
-        <div class="flex items-center justify-between px-28 pt-8">
+        <div class="flex items-center justify-between px-24 pt-8">
             <div class="flex items-center gap-16">
                 <div class="relative inline-block select-none">
-                    <button id="trigger_ingredtients_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                    <button id="trigger_ingredtients_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-[11px] text-iconBlack font-medium w-48">
                         <span id="selected_option">Ingrédients</span>
                         <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
-                    <div id="ingredients_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll shadow-md hidden">
-                        <div id="close_ingredients_trigger" class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5 hover:cursor-pointer">
+                    <div id="ingredients_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-[11px] z-10 max-h-80 overflow-y-scroll shadow-md hidden">
+                        <div id="close_ingredients_trigger" class="flex h-14 items-center justify-between text-iconBlack font-medium w-full px-5 hover:cursor-pointer">
                             <h2>Ingrédients</h2>
                             <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
                         </div>
@@ -60,12 +60,12 @@
                 </div>
 
                 <div class="relative inline-block select-none">
-                    <button id="trigger_appliance_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                    <button id="trigger_appliance_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-[11px] text-iconBlack font-medium w-48">
                         <span id="selected_option">Appareils</span>
                         <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
-                    <div id="appliance_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll shadow-md hidden">
-                        <div id="close_appliance_trigger" class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5 hover:cursor-pointer">
+                    <div id="appliance_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-[11px] z-10 max-h-80 overflow-y-scroll shadow-md hidden">
+                        <div id="close_appliance_trigger" class="flex h-14 items-center justify-between text-iconBlack font-medium w-full px-5 hover:cursor-pointer">
                             <h2>Appareils</h2>
                             <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
                         </div>
@@ -85,12 +85,12 @@
                     </div>
                 </div>
                 <div class="relative inline-block select-none">
-                    <button  id="trigger_ustensils_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-xl text-iconBlack font-semibold w-48">
+                    <button  id="trigger_ustensils_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-[11px] text-iconBlack font-medium w-48">
                         <span id="selected_option">Ustensiles</span>
                         <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
-                    <div id="ustensils_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-xl z-10 max-h-80 overflow-y-scroll shadow-md hidden">
-                        <div id="close_ustensils_trigger" class="flex h-14 items-center justify-between text-iconBlack font-semibold w-full px-5 hover:cursor-pointer">
+                    <div id="ustensils_list" class="absolute w-48 top-0 left-0 right-0 flex-col bg-white rounded-[11px] z-10 max-h-80 overflow-y-scroll shadow-md hidden">
+                        <div id="close_ustensils_trigger" class="flex h-14 items-center justify-between text-iconBlack font-medium w-full px-5 hover:cursor-pointer">
                             <h2>Ustensiles</h2>
                             <span class="flex h-14 w-14 items-center justify-end text-iconBlack"><i class="fa-solid fa-chevron-up"></i></span>
                         </div>
@@ -113,7 +113,7 @@
             <h2 id="total_recipes_number" class="font-anton text-xl">1500 recettes</h2>
         </div>
         <div id="selected_tags_section"></div>
-        <section id="recipes_section" class="flex flex-wrap justify-between gap-16 px-28 py-16"></section>
+        <section id="recipes_section" class="flex flex-wrap justify-between gap-4 px-24 py-16"></section>
     </main>
     <script type="module" src="index.js"></script>
 </body>

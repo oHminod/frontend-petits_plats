@@ -747,6 +747,10 @@ video {
   right: 1rem;
 }
 
+.right-\[10px\] {
+  right: 10px;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -825,6 +829,14 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
 }
 
 .box-border {
@@ -977,6 +989,18 @@ video {
   height: 0.75rem;
 }
 
+.h-\[72px\] {
+  height: 72px;
+}
+
+.h-\[14px\] {
+  height: 14px;
+}
+
+.h-\[52px\] {
+  height: 52px;
+}
+
 .max-h-48 {
   max-height: 12rem;
 }
@@ -1041,12 +1065,40 @@ video {
   width: 0.75rem;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
+.w-\[380px\] {
+  width: 380px;
+}
+
+.w-\[14px\] {
+  width: 14px;
+}
+
+.w-\[52px\] {
+  width: 52px;
+}
+
 .max-w-4xl {
   max-width: 56rem;
 }
 
 .max-w-5xl {
   max-width: 64rem;
+}
+
+.max-w-\[890px\] {
+  max-width: 890px;
+}
+
+.max-w-\[954px\] {
+  max-width: 954px;
+}
+
+.max-w-\[254px\] {
+  max-width: 254px;
 }
 
 .flex-1 {
@@ -1927,6 +1979,14 @@ video {
   border-radius: 0.75rem;
 }
 
+.rounded-\[10px\] {
+  border-radius: 10px;
+}
+
+.rounded-\[11px\] {
+  border-radius: 11px;
+}
+
 .rounded-b {
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
@@ -2269,6 +2329,36 @@ video {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.px-\[18px\] {
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 .pb-14 {
@@ -2991,6 +3081,27 @@ video {
 @media (min-width: 640px) {
   .sm\:underline {
     text-decoration-line: underline;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 }
 

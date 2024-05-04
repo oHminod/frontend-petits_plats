@@ -6,7 +6,7 @@ import { diplayTagsListsDOM, displaySelectedTags } from "./tagsLists.js";
 export function createSelectedTagDOM(tag) {
     const tagDiv = document.createElement("div");
     tagDiv.className =
-        "flex items-center gap-14 bg-primary text-black rounded-xl h-14 px-4 py-2";
+        "flex items-center gap-14 bg-primary text-black text-sm rounded-[10px] h-14 px-[18px] py-2";
     const tagSpan = document.createElement("span");
     const tagWithUpperFirstLetter = tag.charAt(0).toUpperCase() + tag.slice(1);
     tagSpan.textContent = tagWithUpperFirstLetter;
@@ -16,7 +16,7 @@ export function createSelectedTagDOM(tag) {
         "http://www.w3.org/2000/svg",
         "svg"
     );
-    closeIcon.setAttribute("class", "h-3 w-3 hover:cursor-pointer");
+    closeIcon.setAttribute("class", "h-[14px] w-[14px] hover:cursor-pointer");
     closeIcon.setAttribute("fill", "none");
     closeIcon.setAttribute("viewBox", "0 0 14 13");
     closeIcon.setAttribute("height", "13");

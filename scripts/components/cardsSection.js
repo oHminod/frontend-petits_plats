@@ -15,5 +15,12 @@ export function displayRecipes(recipes) {
         });
         oldRecipes = recipes;
     }
-    totalRecipesNumber.textContent = recipes.length + " recettes";
+    const totalRecipesText = recipes.length > 1 ? " recettes" : " recette";
+    const recipesNumber =
+        recipes.length === 0
+            ? "Aucune"
+            : recipes.length < 10
+            ? "0" + recipes.length
+            : recipes.length;
+    totalRecipesNumber.textContent = recipesNumber + totalRecipesText;
 }

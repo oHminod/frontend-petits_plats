@@ -1,6 +1,7 @@
 export const createRecipeCard = (recipe) => {
     const card = document.createElement("article");
-    card.className = "bg-white h-[730px] w-96 rounded-3xl shadow-xl relative";
+    card.className =
+        "bg-white h-[730px] w-[380px] mb-16 rounded-3xl shadow-xl relative";
     card.id = "recipe-" + recipe.id;
 
     const contentWrapper = document.createElement("div");
@@ -69,8 +70,9 @@ export const createRecipeCard = (recipe) => {
     const durationFloat = document.createElement("div");
     durationFloat.className = "flex absolute top-6 right-6";
     const duration = document.createElement("p");
-    duration.className = "bg-primary rounded-full px-6 py-2 text-iconBlack";
-    duration.textContent = recipe.time + "mn";
+    duration.className =
+        "bg-primary rounded-full px-4 py-1 text-iconBlack text-xs";
+    duration.textContent = recipe.time + "min";
     durationFloat.appendChild(duration);
 
     contentWrapper.appendChild(textContent);
