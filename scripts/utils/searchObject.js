@@ -1,5 +1,4 @@
 import { toggleSearchIcon } from "./DOMActions.js";
-import { getFilteredRecipes } from "./sortAndFilter.js";
 
 export const searchObject = {
     filteredRecipes: [],

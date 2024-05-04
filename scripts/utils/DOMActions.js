@@ -44,9 +44,10 @@ export function toggleSearchIcon(searching) {
         ingredientList.classList.add("hidden");
         applianceList.classList.add("hidden");
         ustensilsList.classList.add("hidden");
+        displayRecipes();
+        searchObject.setTagsLists();
         diplayTagsListsDOM();
         displaySelectedTags();
-        displayRecipes();
         searchButton.classList.remove("bg-primary");
         searchButton.classList.add("bg-iconBlack");
         iconPart1.setAttribute("stroke", "white");

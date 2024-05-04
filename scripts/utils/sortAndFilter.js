@@ -45,11 +45,8 @@ function filterRecipe(
         name,
         description,
         ingredients
-        // appliances,
-        // ustensils
     );
 
-    // if (!isSearchFiltered) return isTagFiltered;
     return isTagFiltered && isSearchFiltered;
 }
 
@@ -63,21 +60,12 @@ function checkTags(tags, items) {
     return tags.every((tag) => items.some((item) => item.includes(tag)));
 }
 
-function checkSearchField(
-    searchField,
-    name,
-    description,
-    ingredients
-    // appliances,
-    // ustensils
-) {
+function checkSearchField(searchField, name, description, ingredients) {
     return (
         searchField.trim() === "" ||
         name.includes(searchField) ||
         description.includes(searchField) ||
         ingredients.some((ingredient) => ingredient.includes(searchField)) ||
-        ingredients.some((ingredient) => ingredient.includes(searchField)) //||
-        // appliances.some((appliance) => appliance.includes(searchField)) ||
-        // ustensils.some((ustensil) => ustensil.includes(searchField))
+        ingredients.some((ingredient) => ingredient.includes(searchField))
     );
 }
