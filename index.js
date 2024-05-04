@@ -1,6 +1,10 @@
 import { displayRecipes } from "./scripts/components/cardsSection.js";
 import { diplayTagsListsDOM } from "./scripts/components/tagsLists.js";
-import { manageLists, toggleSearchIcon } from "./scripts/utils/DOMActions.js";
+import {
+    closeLists,
+    manageLists,
+    toggleSearchIcon,
+} from "./scripts/utils/DOMActions.js";
 import { searchObject } from "./scripts/utils/searchObject.js";
 
 searchObject.setTagsLists();

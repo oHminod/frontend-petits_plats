@@ -44,7 +44,7 @@ export const searchObject = {
         this.selectedTabs = this.selectedTabs.filter(
             (selectedTab) => selectedTab !== tag.toLowerCase()
         );
-        if (this.ingredientTags.length === 0 && this.searchField.length < 3)
+        if (this.selectedTabs.length === 0 && this.searchField.length < 3)
             toggleSearchIcon(false);
     },
     removeApplianceTag(tag) {
@@ -54,7 +54,7 @@ export const searchObject = {
         this.selectedTabs = this.selectedTabs.filter(
             (selectedTab) => selectedTab !== tag.toLowerCase()
         );
-        if (this.applianceTags.length === 0 && this.searchField.length < 3)
+        if (this.selectedTabs.length === 0 && this.searchField.length < 3)
             toggleSearchIcon(false);
     },
     removeUstensilsTag(tag) {
@@ -64,7 +64,7 @@ export const searchObject = {
         this.selectedTabs = this.selectedTabs.filter(
             (selectedTab) => selectedTab !== tag.toLowerCase()
         );
-        if (this.ustensilsTags.length === 0 && this.searchField.length < 3)
+        if (this.selectedTabs.length === 0 && this.searchField.length < 3)
             toggleSearchIcon(false);
     },
     setTagsLists() {
