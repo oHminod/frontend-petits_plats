@@ -4,7 +4,6 @@ import {
     displaySelectedTags,
 } from "../components/tagsLists.js";
 import { searchObject } from "./searchObject.js";
-import { getFilteredRecipes } from "./sortAndFilter.js";
 
 export function toggleSearchIcon(searching) {
     const searchButton = document.getElementById("search_button");
@@ -15,10 +14,9 @@ export function toggleSearchIcon(searching) {
     function handleReset() {
         searchObject.reset();
         searchField.value = "";
-        const recipes = getFilteredRecipes();
         diplayTagsListsDOM();
         displaySelectedTags();
-        displayRecipes(recipes);
+        displayRecipes();
         searchButton.classList.remove("bg-primary");
         searchButton.classList.add("bg-iconBlack");
         iconPart1.setAttribute("stroke", "white");

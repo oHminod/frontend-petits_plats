@@ -1,5 +1,4 @@
 import { searchObject } from "../utils/searchObject.js";
-import { getFilteredRecipes } from "../utils/sortAndFilter.js";
 import { displayRecipes } from "./cardsSection.js";
 import { diplayTagsListsDOM, displaySelectedTags } from "./tagsLists.js";
 
@@ -38,8 +37,7 @@ export function createSelectedTagDOM(tag) {
         searchObject.removeSelectedTag(tag);
         searchObject.setTagsLists();
         diplayTagsListsDOM();
-        const filteredRecipes = getFilteredRecipes();
-        displayRecipes(filteredRecipes);
+        displayRecipes();
         displaySelectedTags();
     });
 

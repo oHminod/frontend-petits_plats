@@ -2,11 +2,9 @@ import { displayRecipes } from "./scripts/components/cardsSection.js";
 import { diplayTagsListsDOM } from "./scripts/components/tagsLists.js";
 import { manageLists, toggleSearchIcon } from "./scripts/utils/DOMActions.js";
 import { searchObject } from "./scripts/utils/searchObject.js";
-import { getFilteredRecipes } from "./scripts/utils/sortAndFilter.js";
 
 searchObject.setTagsLists();
-const recipes = getFilteredRecipes();
-displayRecipes(recipes);
+displayRecipes();
 diplayTagsListsDOM();
 manageLists();
 
@@ -24,15 +22,13 @@ DOMSearchField.addEventListener("input", () => {
             searchObject.setSearchField(DOMSearchField.value);
             searchObject.setTagsLists();
             diplayTagsListsDOM();
-            const filteredRecipes = getFilteredRecipes();
-            displayRecipes(filteredRecipes);
+            displayRecipes();
             return;
         }
 
         searchObject.setSearchField("");
         searchObject.setTagsLists();
         diplayTagsListsDOM();
-        const filteredRecipes = getFilteredRecipes();
-        displayRecipes(filteredRecipes);
+        displayRecipes();
     }, 500);
 });

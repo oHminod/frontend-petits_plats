@@ -1,5 +1,4 @@
 import { searchObject } from "../utils/searchObject.js";
-import { getFilteredRecipes } from "../utils/sortAndFilter.js";
 import { displayRecipes } from "./cardsSection.js";
 import { diplayTagsListsDOM, displaySelectedTags } from "./tagsLists.js";
 
@@ -122,8 +121,7 @@ export function createTagItem(tag, type) {
 function handlestaticEvents() {
     searchObject.setTagsLists();
     const needToRender = diplayTagsListsDOM();
-    const filteredRecipes = getFilteredRecipes();
-    displayRecipes(filteredRecipes);
+    displayRecipes();
 
     return needToRender;
 }

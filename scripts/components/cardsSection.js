@@ -1,7 +1,9 @@
+import { getFilteredRecipes } from "../utils/sortAndFilter.js";
 import { createRecipeCard } from "./cardFactory.js";
 
 let oldRecipes = [];
-export function displayRecipes(recipes) {
+export function displayRecipes() {
+    const recipes = getFilteredRecipes();
     const recipeSection = document.getElementById("recipes_section");
     const stringifiedRecipes = JSON.stringify(recipes);
     const stringifiedOldRecipes = JSON.stringify(oldRecipes);
