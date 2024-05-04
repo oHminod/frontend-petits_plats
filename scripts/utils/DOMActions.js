@@ -1,20 +1,42 @@
+import { displayRecipes } from "../components/cardsSection.js";
+import {
+    diplayTagsListsDOM,
+    displaySelectedTags,
+} from "../components/tagsLists.js";
 import { searchObject } from "./searchObject.js";
+import { getFilteredRecipes } from "./sortAndFilter.js";
 
 export function toggleSearchIcon(searching) {
     const searchButton = document.getElementById("search_button");
     const iconPart1 = document.getElementById("icon_part1");
     const iconPart2 = document.getElementById("icon_part2");
+    const searchField = document.getElementById("search_field");
+
+    function handleReset() {
+        searchObject.reset();
+        searchField.value = "";
+        const recipes = getFilteredRecipes();
+        diplayTagsListsDOM();
+        displaySelectedTags();
+        displayRecipes(recipes);
+        searchButton.classList.remove("bg-primary");
+        searchButton.classList.add("bg-iconBlack");
+        iconPart1.setAttribute("stroke", "white");
+        iconPart2.setAttribute("stroke", "white");
+    }
 
     if (searching) {
         searchButton.classList.remove("bg-iconBlack");
         searchButton.classList.add("bg-primary");
         iconPart1.setAttribute("stroke", "black");
         iconPart2.setAttribute("stroke", "black");
+        searchButton.addEventListener("click", handleReset);
     } else {
         searchButton.classList.remove("bg-primary");
         searchButton.classList.add("bg-iconBlack");
         iconPart1.setAttribute("stroke", "white");
         iconPart2.setAttribute("stroke", "white");
+        searchButton.removeEventListener("click", handleReset);
     }
 }
 

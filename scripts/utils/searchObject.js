@@ -1,3 +1,4 @@
+import { toggleSearchIcon } from "./DOMActions.js";
 import { getFilteredRecipes } from "./sortAndFilter.js";
 
 export const searchObject = {
@@ -14,18 +15,24 @@ export const searchObject = {
     },
     addIngredientTag(tag) {
         if (!this.ingredientTags.includes(tag.toLowerCase())) {
+            if (this.selectedTabs.length === 0 && this.searchField.length < 3)
+                toggleSearchIcon(true);
             this.ingredientTags.push(tag.toLowerCase());
             this.selectedTabs.push(tag.toLowerCase());
         }
     },
     addApplianceTag(tag) {
         if (!this.applianceTags.includes(tag.toLowerCase())) {
+            if (this.selectedTabs.length === 0 && this.searchField.length < 3)
+                toggleSearchIcon(true);
             this.applianceTags.push(tag.toLowerCase());
             this.selectedTabs.push(tag.toLowerCase());
         }
     },
     addUstensilsTag(tag) {
         if (!this.ustensilsTags.includes(tag.toLowerCase())) {
+            if (this.selectedTabs.length === 0 && this.searchField.length < 3)
+                toggleSearchIcon(true);
             this.ustensilsTags.push(tag.toLowerCase());
             this.selectedTabs.push(tag.toLowerCase());
         }
@@ -37,6 +44,8 @@ export const searchObject = {
         this.selectedTabs = this.selectedTabs.filter(
             (selectedTab) => selectedTab !== tag.toLowerCase()
         );
+        if (this.ingredientTags.length === 0 && this.searchField.length < 3)
+            toggleSearchIcon(false);
     },
     removeApplianceTag(tag) {
         this.applianceTags = this.applianceTags.filter(
@@ -45,6 +54,8 @@ export const searchObject = {
         this.selectedTabs = this.selectedTabs.filter(
             (selectedTab) => selectedTab !== tag.toLowerCase()
         );
+        if (this.applianceTags.length === 0 && this.searchField.length < 3)
+            toggleSearchIcon(false);
     },
     removeUstensilsTag(tag) {
         this.ustensilsTags = this.ustensilsTags.filter(
@@ -53,6 +64,8 @@ export const searchObject = {
         this.selectedTabs = this.selectedTabs.filter(
             (selectedTab) => selectedTab !== tag.toLowerCase()
         );
+        if (this.ustensilsTags.length === 0 && this.searchField.length < 3)
+            toggleSearchIcon(false);
     },
     setTagsLists() {
         const filteredRecipes = getFilteredRecipes();
@@ -93,5 +106,13 @@ export const searchObject = {
         if (this.ustensilsTags.includes(tag.toLowerCase())) {
             this.removeUstensilsTag(tag.toLowerCase());
         }
+    },
+    reset() {
+        this.ingredientTags = [];
+        this.applianceTags = [];
+        this.ustensilsTags = [];
+        this.searchField = "";
+        this.selectedTabs = [];
+        this.setTagsLists();
     },
 };
