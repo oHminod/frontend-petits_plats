@@ -60,7 +60,10 @@ export function toggleSearchIcon(searching) {
         iconPart1.setAttribute("stroke", "black");
         iconPart2.setAttribute("stroke", "black");
         searchButton.addEventListener("click", handleReset);
-    } else {
+    } else if (
+        searchObject.searchField.length === 0 &&
+        searchObject.selectedTabs.length === 0
+    ) {
         searchButton.classList.remove("bg-primary");
         searchButton.classList.add("bg-iconBlack");
         iconPart1.setAttribute("stroke", "white");
