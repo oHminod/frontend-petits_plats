@@ -7,8 +7,8 @@ import {
 } from "./scripts/utils/DOMActions.js";
 import { searchObject } from "./scripts/utils/searchObject.js";
 
-searchObject.setTagsLists();
 displayRecipes();
+searchObject.setTagsLists();
 diplayTagsListsDOM();
 manageLists();
 
@@ -24,15 +24,15 @@ DOMSearchField.addEventListener("input", () => {
 
         if (DOMSearchField.value.length >= 3) {
             searchObject.setSearchField(DOMSearchField.value.toLowerCase());
+            displayRecipes();
             searchObject.setTagsLists();
             diplayTagsListsDOM();
-            displayRecipes();
             return;
         }
 
         searchObject.setSearchField("");
+        displayRecipes();
         searchObject.setTagsLists();
         diplayTagsListsDOM();
-        displayRecipes();
     }, 500);
 });

@@ -35,9 +35,9 @@ export function createSelectedTagDOM(tag) {
 
     closeIcon.addEventListener("click", () => {
         searchObject.removeSelectedTag(tag);
+        displayRecipes();
         searchObject.setTagsLists();
         diplayTagsListsDOM();
-        displayRecipes();
         displaySelectedTags();
     });
 

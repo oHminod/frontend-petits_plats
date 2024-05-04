@@ -2,6 +2,7 @@ import { toggleSearchIcon } from "./DOMActions.js";
 import { getFilteredRecipes } from "./sortAndFilter.js";
 
 export const searchObject = {
+    filteredRecipes: [],
     selectedTabs: [],
     ingredientTagsList: [],
     applianceTagsList: [],
@@ -10,6 +11,9 @@ export const searchObject = {
     applianceTags: [],
     ustensilsTags: [],
     searchField: "",
+    setFilteredRecipes(recipes) {
+        this.filteredRecipes = recipes;
+    },
     setSearchField(tag) {
         this.searchField = tag;
     },
@@ -68,7 +72,7 @@ export const searchObject = {
             toggleSearchIcon(false);
     },
     setTagsLists() {
-        const filteredRecipes = getFilteredRecipes();
+        const filteredRecipes = this.filteredRecipes;
 
         this.ingredientTagsList = filteredRecipes.reduce((acc, recipe) => {
             recipe.ingredients.forEach((ingredient) => {

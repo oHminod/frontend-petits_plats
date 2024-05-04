@@ -119,9 +119,9 @@ export function createTagItem(tag, type) {
 }
 
 function handlestaticEvents() {
+    displayRecipes();
     searchObject.setTagsLists();
     const needToRender = diplayTagsListsDOM();
-    displayRecipes();
 
     return needToRender;
 }

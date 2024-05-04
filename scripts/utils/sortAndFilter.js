@@ -17,6 +17,8 @@ export function getFilteredRecipes() {
         )
     );
 
+    searchObject.setFilteredRecipes(result);
+
     return result;
 }
 
