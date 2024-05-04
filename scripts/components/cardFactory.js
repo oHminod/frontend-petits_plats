@@ -13,17 +13,17 @@ export const createRecipeCard = (recipe) => {
     contentWrapper.appendChild(image);
 
     const textContent = document.createElement("div");
-    textContent.className = "p-6 pb-14 flex flex-col flex-1 justify-between";
+    textContent.className = "px-[25px] py-[32px] flex flex-col flex-1";
     const title = document.createElement("h2");
-    title.className = "font-anton font-normal text-lg text-black mb-6";
+    title.className = "font-anton font-normal text-lg text-black";
     title.textContent = recipe.name;
     textContent.appendChild(title);
 
     const recetteContent = document.createElement("div");
-    recetteContent.className = "mb-6";
+    recetteContent.className = "pt-[29px]";
     const titreRecette = document.createElement("h3");
     titreRecette.className =
-        "text-greytext font-bold text-xs tracking-[.08rem] mb-4";
+        "text-greytext font-bold text-xs tracking-[.08rem] mb-[15px]";
     titreRecette.textContent = "RECETTE";
     const descriptionRecette = document.createElement("p");
     descriptionRecette.className =
@@ -34,18 +34,19 @@ export const createRecipeCard = (recipe) => {
     textContent.appendChild(recetteContent);
 
     const ingredientsContent = document.createElement("div");
+    ingredientsContent.className = "pt-[32px]";
     const titreIngredients = document.createElement("h3");
     titreIngredients.className =
-        "text-greytext font-bold text-xs tracking-[.08rem] mb-4";
+        "text-greytext font-bold text-xs tracking-[.08rem] mb-[15px]";
     titreIngredients.textContent = "INGRÉDIENTS";
     ingredientsContent.appendChild(titreIngredients);
 
     const ingredientsWrapper = document.createElement("div");
     ingredientsWrapper.className =
-        "flex flex-wrap gap-6 max-h-48 overflow-y-scroll";
+        "flex flex-wrap max-h-[164px] gap-y-[21px] overflow-y-scroll";
     recipe.ingredients.forEach((ingredient) => {
         const ingredientItem = document.createElement("div");
-        ingredientItem.className = "w-[calc(50%_-_48px)]";
+        ingredientItem.className = "w-1/2";
         const ingredientName = document.createElement("h4");
         ingredientName.className = "text-sm text-iconBlack font-medium";
         ingredientName.textContent = ingredient.ingredient;
@@ -68,10 +69,10 @@ export const createRecipeCard = (recipe) => {
     textContent.appendChild(ingredientsContent);
 
     const durationFloat = document.createElement("div");
-    durationFloat.className = "flex absolute top-6 right-6";
+    durationFloat.className = "flex absolute top-[21px] right-[22px]";
     const duration = document.createElement("p");
     duration.className =
-        "bg-primary rounded-full px-4 py-1 text-iconBlack text-xs";
+        "bg-primary rounded-full flex items-center justify-center h-[26px] w-[63px] text-iconBlack text-xs";
     duration.textContent = recipe.time + "min";
     durationFloat.appendChild(duration);
 

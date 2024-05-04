@@ -184,7 +184,7 @@ export function displaySelectedTags() {
     const tagsSection = document.getElementById("selected_tags_section");
     const tagSectionContainer = document.createElement("div");
     tagSectionContainer.className =
-        "flex flex-wrap gap-6 items-center px-24 pt-6";
+        "flex flex-wrap gap-6 items-center px-[102px] pt-6";
     const selectedTags = searchObject.selectedTabs;
 
     tagsSection.innerHTML = "";
