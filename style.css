@@ -2577,6 +2577,11 @@ video {
   padding-bottom: 32px;
 }
 
+.py-\[25px\] {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
 .pb-14 {
   padding-bottom: 3.5rem;
 }
@@ -2635,6 +2640,22 @@ video {
 
 .pt-\[29px\] {
   padding-top: 29px;
+}
+
+.pl-\[35px\] {
+  padding-left: 35px;
+}
+
+.pr-\[50px\] {
+  padding-right: 50px;
+}
+
+.pr-\[64px\] {
+  padding-right: 64px;
+}
+
+.pr-\[70px\] {
+  padding-right: 70px;
 }
 
 .text-left {

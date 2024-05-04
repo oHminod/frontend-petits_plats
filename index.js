@@ -19,7 +19,7 @@ DOMSearchField.addEventListener("input", () => {
         toggleSearchIcon(DOMSearchField.value.length >= 3);
 
         if (DOMSearchField.value.length >= 3) {
-            searchObject.setSearchField(DOMSearchField.value);
+            searchObject.setSearchField(DOMSearchField.value.toLowerCase());
             searchObject.setTagsLists();
             diplayTagsListsDOM();
             displayRecipes();
