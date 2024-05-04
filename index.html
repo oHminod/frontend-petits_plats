@@ -19,8 +19,8 @@
             </h1>
             <div class="w-full max-w-[954px] mt-7 relative flex flex-col items-center justify-center">
                 <input id="search_field" type="text" class="w-full rounded-xl h-[72px] relative py-[25px] pl-[35px] pr-[70px] placeholder:font-sans placeholder:text-greytext placeholder:text-base text-greytext" placeholder="Rechercher une recette, un ingrédient, ...">
-                <button id="search_button" class="absolute right-[10px] bg-iconBlack z-10 h-[52px] w-[52px] text-white rounded-xl flex items-center justify-center">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button id="search_button" class="absolute right-[10px] bg-iconBlack z-10 h-[52px] w-[51px] text-white rounded-xl flex items-center justify-center">
+                    <svg class="ml-[2px]" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle id="icon_part1" cx="10" cy="10" r="10" stroke="white"/>
                         <line id="icon_part2" x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="white"/>
                     </svg>
@@ -31,7 +31,7 @@
         
     </header>
     <main class="min-h-full">
-        <div class="flex items-center justify-between px-24 pt-8">
+        <div class="flex items-center justify-between px-[102px] pt-6 pb-2">
             <div class="flex items-center gap-16">
                 <div class="relative inline-block select-none">
                     <button id="trigger_ingredtients_list" class="flex h-14 items-center justify-between py-3 px-5 bg-white rounded-[11px] text-iconBlack font-medium w-48">
@@ -113,7 +113,7 @@
             <h2 id="total_recipes_number" class="font-anton text-xl">1500 recettes</h2>
         </div>
         <div id="selected_tags_section"></div>
-        <section id="recipes_section" class="flex flex-wrap justify-between gap-4 px-24 py-11"></section>
+        <section id="recipes_section" class="flex flex-wrap justify-between gap-4 px-[102px] py-11"></section>
     </main>
     <script type="module" src="index.js"></script>
 </body>

@@ -1,7 +1,7 @@
 export const createRecipeCard = (recipe) => {
     const card = document.createElement("article");
     card.className =
-        "bg-white h-[730px] w-[380px] mb-16 rounded-3xl shadow-xl relative";
+        "bg-white h-[730px] w-[380px] mb-16 rounded-3xl shadow-2xl relative";
     card.id = "recipe-" + recipe.id;
 
     const contentWrapper = document.createElement("div");
@@ -23,7 +23,7 @@ export const createRecipeCard = (recipe) => {
     recetteContent.className = "pt-[29px]";
     const titreRecette = document.createElement("h3");
     titreRecette.className =
-        "text-greytext font-bold text-xs tracking-[.08rem] mb-[15px]";
+        "text-greytext font-bold text-xs tracking-[.064rem] mb-[15px]";
     titreRecette.textContent = "RECETTE";
     const descriptionRecette = document.createElement("p");
     descriptionRecette.className =
@@ -37,7 +37,7 @@ export const createRecipeCard = (recipe) => {
     ingredientsContent.className = "pt-[32px]";
     const titreIngredients = document.createElement("h3");
     titreIngredients.className =
-        "text-greytext font-bold text-xs tracking-[.08rem] mb-[15px]";
+        "text-greytext font-bold text-xs tracking-[.064rem] mb-[15px]";
     titreIngredients.textContent = "INGRÉDIENTS";
     ingredientsContent.appendChild(titreIngredients);
 
@@ -72,7 +72,7 @@ export const createRecipeCard = (recipe) => {
     durationFloat.className = "flex absolute top-[21px] right-[22px]";
     const duration = document.createElement("p");
     duration.className =
-        "bg-primary rounded-full flex items-center justify-center h-[26px] w-[63px] text-iconBlack text-xs";
+        "bg-primary rounded-[14px] flex items-center justify-center h-[26px] w-[63px] text-iconBlack text-xs";
     duration.textContent = recipe.time + "min";
     durationFloat.appendChild(duration);
 
