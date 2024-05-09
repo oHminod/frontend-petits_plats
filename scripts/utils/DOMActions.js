@@ -1,14 +1,18 @@
-import { displayRecipes } from "../components/cardsSection.js";
-import {
-    diplayTagsListsDOM,
-    displaySelectedTags,
-} from "../components/tagsLists.js";
+import { displayRecipesAndTagsLists } from "../components/cardsSection.js";
+import { displaySelectedTags } from "../components/tagsLists.js";
 import { searchObject } from "./searchObject.js";
 
-export function toggleSearchIcon(searching) {
+export function setAttributes(element, attributes) {
+    Object.entries(attributes).forEach(([key, value]) => {
+        element.setAttribute(key, value);
+    });
+}
+
+function handleReset() {
     const searchButton = document.getElementById("search_button");
     const iconPart1 = document.getElementById("icon_part1");
     const iconPart2 = document.getElementById("icon_part2");
+
     const searchField = document.getElementById("search_field");
     const filterIngredientsInput = document.getElementById(
         "filter_ingredients_input"
@@ -32,27 +36,29 @@ export function toggleSearchIcon(searching) {
     const applianceList = document.getElementById("appliance_list");
     const ustensilsList = document.getElementById("ustensils_list");
 
-    function handleReset() {
-        searchObject.reset();
-        searchField.value = "";
-        filterIngredientsInput.value = "";
-        filterApplianceInput.value = "";
-        filterUstensilsInput.value = "";
-        clearIngredientsInputButton.classList.add("hidden");
-        clearApplianceInputButton.classList.add("hidden");
-        clearUstensilsInputButton.classList.add("hidden");
-        ingredientList.classList.add("hidden");
-        applianceList.classList.add("hidden");
-        ustensilsList.classList.add("hidden");
-        displayRecipes();
-        searchObject.setTagsLists();
-        diplayTagsListsDOM();
-        displaySelectedTags();
-        searchButton.classList.remove("bg-primary");
-        searchButton.classList.add("bg-iconBlack");
-        iconPart1.setAttribute("stroke", "white");
-        iconPart2.setAttribute("stroke", "white");
-    }
+    searchObject.reset();
+    searchField.value = "";
+    filterIngredientsInput.value = "";
+    filterApplianceInput.value = "";
+    filterUstensilsInput.value = "";
+    clearIngredientsInputButton.classList.add("hidden");
+    clearApplianceInputButton.classList.add("hidden");
+    clearUstensilsInputButton.classList.add("hidden");
+    ingredientList.classList.add("hidden");
+    applianceList.classList.add("hidden");
+    ustensilsList.classList.add("hidden");
+    displayRecipesAndTagsLists();
+    displaySelectedTags();
+    searchButton.classList.remove("bg-primary");
+    searchButton.classList.add("bg-iconBlack");
+    iconPart1.setAttribute("stroke", "white");
+    iconPart2.setAttribute("stroke", "white");
+}
+
+export function toggleSearchIcon(searching) {
+    const searchButton = document.getElementById("search_button");
+    const iconPart1 = document.getElementById("icon_part1");
+    const iconPart2 = document.getElementById("icon_part2");
 
     if (searching) {
         searchButton.classList.remove("bg-iconBlack");
@@ -61,7 +67,7 @@ export function toggleSearchIcon(searching) {
         iconPart2.setAttribute("stroke", "black");
         searchButton.addEventListener("click", handleReset);
     } else if (
-        searchObject.searchField.length === 0 &&
+        searchObject.searchField.length <= 3 &&
         searchObject.selectedTabs.length === 0
     ) {
         searchButton.classList.remove("bg-primary");
@@ -119,7 +125,7 @@ function toggleUstensilsList() {
     }
 }
 
-export function manageLists() {
+export function setupListEventHandlers() {
     const ingredientsListtrigger = document.getElementById(
         "trigger_ingredtients_list"
     );

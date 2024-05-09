@@ -1,12 +1,12 @@
-import { displayRecipes } from "./scripts/components/cardsSection.js";
-import { diplayTagsListsDOM } from "./scripts/components/tagsLists.js";
-import { manageLists, toggleSearchIcon } from "./scripts/utils/DOMActions.js";
+import { displayRecipesAndTagsLists } from "./scripts/components/cardsSection.js";
+import {
+    setupListEventHandlers,
+    toggleSearchIcon,
+} from "./scripts/utils/DOMActions.js";
 import { searchObject } from "./scripts/utils/searchObject.js";
 
-displayRecipes();
-searchObject.setTagsLists();
-diplayTagsListsDOM();
-manageLists();
+displayRecipesAndTagsLists();
+setupListEventHandlers();
 
 const DOMSearchField = document.getElementById("search_field");
 
@@ -15,20 +15,17 @@ let dedupInput = null;
 DOMSearchField.addEventListener("input", () => {
     clearTimeout(dedupInput);
 
-    dedupInput = setTimeout(() => {
-        toggleSearchIcon(DOMSearchField.value.length >= 3);
+    toggleSearchIcon(DOMSearchField.value.length >= 3);
 
+    dedupInput = setTimeout(() => {
         if (DOMSearchField.value.length >= 3) {
             searchObject.setSearchField(DOMSearchField.value.toLowerCase());
-            displayRecipes();
-            searchObject.setTagsLists();
-            diplayTagsListsDOM();
+            displayRecipesAndTagsLists();
+
             return;
         }
 
         searchObject.setSearchField("");
-        displayRecipes();
-        searchObject.setTagsLists();
-        diplayTagsListsDOM();
+        displayRecipesAndTagsLists();
     }, 500);
 });
