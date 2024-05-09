@@ -2,6 +2,30 @@ import { displayRecipesAndTagsLists } from "../components/cardsSection.js";
 import { displaySelectedTags } from "../components/tagsLists.js";
 import { searchObject } from "./searchObject.js";
 
+export function setupSearchFieldListener() {
+    const DOMSearchField = document.getElementById("search_field");
+
+    let dedupInput = null;
+
+    DOMSearchField.addEventListener("input", () => {
+        clearTimeout(dedupInput);
+
+        toggleSearchIcon(DOMSearchField.value.length >= 3);
+
+        dedupInput = setTimeout(() => {
+            if (DOMSearchField.value.length >= 3) {
+                searchObject.setSearchField(DOMSearchField.value.toLowerCase());
+                displayRecipesAndTagsLists();
+
+                return;
+            }
+
+            searchObject.setSearchField("");
+            displayRecipesAndTagsLists();
+        }, 500);
+    });
+}
+
 export function setAttributes(element, attributes) {
     Object.entries(attributes).forEach(([key, value]) => {
         element.setAttribute(key, value);
