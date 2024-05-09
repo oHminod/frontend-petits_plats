@@ -13,7 +13,13 @@ function createAndAppendTags(tags, DOMElement, type) {
     });
 }
 
-function addInputEventListener(inputElement, tags, DOMElement, clearButton) {
+function addInputEventListener(
+    inputElement,
+    tags,
+    DOMElement,
+    clearButton,
+    type
+) {
     inputElement.addEventListener("input", (event) => {
         const filteredTags = tags.filter((tag) =>
             tag.toLowerCase().includes(event.target.value.toLowerCase())
@@ -31,7 +37,8 @@ function addClearButtonEventListener(
     clearButton,
     inputElement,
     tags,
-    DOMElement
+    DOMElement,
+    type
 ) {
     clearButton.addEventListener("click", () => {
         inputElement.value = "";
@@ -77,35 +84,40 @@ export function diplayTagsListsDOM() {
         document.getElementById("filter_ingredients_input"),
         ingredientsTags,
         DOMIngredientsTagsList,
-        document.getElementById("clear_ingredient_tag_input")
+        document.getElementById("clear_ingredient_tag_input"),
+        "ingredient"
     );
 
     addClearButtonEventListener(
         document.getElementById("clear_ingredient_tag_input"),
         document.getElementById("filter_ingredients_input"),
         ingredientsTags,
-        DOMIngredientsTagsList
+        DOMIngredientsTagsList,
+        "ingredient"
     );
 
     addInputEventListener(
         document.getElementById("filter_appliance_input"),
         applianceTags,
         DOMApplianceTagsList,
-        document.getElementById("clear_appliance_tag_input")
+        document.getElementById("clear_appliance_tag_input"),
+        "appliance"
     );
 
     addClearButtonEventListener(
         document.getElementById("clear_appliance_tag_input"),
         document.getElementById("filter_appliance_input"),
         applianceTags,
-        DOMApplianceTagsList
+        DOMApplianceTagsList,
+        "appliance"
     );
 
     addInputEventListener(
         document.getElementById("filter_ustensils_input"),
         ustensilsTags,
         DOMUstensilsTagsList,
-        document.getElementById("clear_ustensils_tag_input")
+        document.getElementById("clear_ustensils_tag_input"),
+        "ustensil"
     );
 
     addClearButtonEventListener(
