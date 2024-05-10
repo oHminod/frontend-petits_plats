@@ -12,6 +12,8 @@ export function setupSearchFieldListener() {
 
         toggleSearchIcon(DOMSearchField.value.length >= 3);
 
+        toggleSearfieldResetButton();
+
         dedupInput = setTimeout(() => {
             if (DOMSearchField.value.length >= 3) {
                 searchObject.setSearchField(DOMSearchField.value.toLowerCase());
@@ -24,6 +26,10 @@ export function setupSearchFieldListener() {
             displayRecipesAndTagsLists();
         }, 500);
     });
+
+    const resetSearchFieldButton = document.getElementById("reset_searchfield");
+
+    resetSearchFieldButton.addEventListener("click", resetSearchField);
 }
 
 export function setAttributes(element, attributes) {
@@ -100,6 +106,31 @@ export function toggleSearchIcon(searching) {
         iconPart2.setAttribute("stroke", "white");
         searchButton.removeEventListener("click", handleReset);
     }
+}
+
+function toggleSearfieldResetButton() {
+    const searchField = document.getElementById("search_field");
+    const searchFieldResetButton = document.getElementById("reset_searchfield");
+
+    if (searchField.value.length > 0) {
+        searchFieldResetButton.classList.remove("hidden");
+        searchFieldResetButton.classList.add("flex");
+        return;
+    }
+
+    searchFieldResetButton.classList.remove("flex");
+    searchFieldResetButton.classList.add("hidden");
+}
+
+function resetSearchField() {
+    const searchField = document.getElementById("search_field");
+    searchField.value = "";
+    searchObject.setSearchField("");
+    displayRecipesAndTagsLists();
+
+    const searchFieldResetButton = document.getElementById("reset_searchfield");
+    searchFieldResetButton.classList.remove("flex");
+    searchFieldResetButton.classList.add("hidden");
 }
 
 export function closeLists() {

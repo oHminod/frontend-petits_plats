@@ -759,6 +759,18 @@ video {
   top: 21px;
 }
 
+.right-\[40px\] {
+  right: 40px;
+}
+
+.right-\[60px\] {
+  right: 60px;
+}
+
+.right-\[84px\] {
+  right: 84px;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -2688,6 +2700,18 @@ video {
 
 .pl-6 {
   padding-left: 1.5rem;
+}
+
+.pr-\[107px\] {
+  padding-right: 107px;
+}
+
+.pr-\[128px\] {
+  padding-right: 128px;
+}
+
+.pr-\[122px\] {
+  padding-right: 122px;
 }
 
 .text-left {
