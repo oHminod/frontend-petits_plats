@@ -14,6 +14,15 @@ module.exports = {
                 sans: ["Manrope", "sans-serif"],
                 anton: ["Anton", "sans-serif"],
             },
+            keyframes: {
+                "fade-out": {
+                    "0%": { opacity: "1" },
+                    "100%": { opacity: "0" },
+                },
+            },
+            animation: {
+                "fade-out": "fade-out 0.3s ease-out forwards",
+            },
         },
     },
     plugins: [],

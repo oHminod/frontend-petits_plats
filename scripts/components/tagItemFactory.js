@@ -1,6 +1,7 @@
 import { setAttributes } from "../utils/DOMActions.js";
 import { searchObject } from "../utils/searchObject.js";
 import { displayRecipesAndTagsLists } from "./cardsSection.js";
+import { displayPopOver } from "./popoverCard.js";
 import { displaySelectedTags } from "./tagsLists.js";
 
 export function createTagItem(tag, type) {
@@ -44,7 +45,7 @@ function createCloseIcon() {
         "svg"
     );
     setAttributes(closeIcon, {
-        class: "absolute right-4 z-50 h-[17px] w-[17px] hidden",
+        class: "absolute right-4 z-30 h-[17px] w-[17px] hidden",
         fill: "none",
         viewBox: "0 0 17 17",
         height: "17",
@@ -81,7 +82,15 @@ function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
         if (!searchObject[tagsMethod].includes(tag.toLowerCase())) {
             searchObject[addMethod](tag);
             const noNeedRender = !handlestaticEvents();
-            if (noNeedRender) searchObject[removeMethod](tag);
+            if (noNeedRender) {
+                searchObject[removeMethod](tag);
+                //! code pour la popover ici pour le cas où le tag est déjà présent dans toutes les recettes affichées
+                displayPopOver(
+                    tagLi,
+                    "Ce tag est déjà présent dans toutes les recettes affichées",
+                    2000
+                );
+            }
             if (!noNeedRender) displaySelectedTags();
         }
         e.stopPropagation();
