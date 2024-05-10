@@ -131,6 +131,8 @@ function resetSearchField() {
     const searchFieldResetButton = document.getElementById("reset_searchfield");
     searchFieldResetButton.classList.remove("flex");
     searchFieldResetButton.classList.add("hidden");
+
+    toggleSearchIcon(false);
 }
 
 export function closeLists() {
