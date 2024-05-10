@@ -77,6 +77,35 @@ function createCloseIcon() {
     return closeIcon;
 }
 
+function listInputElement(addMethod) {
+    const ingredientsInput = document.getElementById(
+        "filter_ingredients_input"
+    );
+    const ingredientsInputClearBtn = document.getElementById(
+        "clear_ingredient_tag_input"
+    );
+    const applianceInput = document.getElementById("filter_appliance_input");
+    const applianceInputClearBtn = document.getElementById(
+        "clear_appliance_tag_input"
+    );
+    const ustensilsInput = document.getElementById("filter_ustensils_input");
+    const ustensilsInputClearBtn = document.getElementById(
+        "clear_ustensils_tag_input"
+    );
+
+    if (addMethod === "addIngredientTag") {
+        return [ingredientsInput, ingredientsInputClearBtn];
+    }
+
+    if (addMethod === "addApplianceTag") {
+        return [applianceInput, applianceInputClearBtn];
+    }
+
+    if (addMethod === "addUstensilsTag") {
+        return [ustensilsInput, ustensilsInputClearBtn];
+    }
+}
+
 function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
     tagLi.addEventListener("click", (e) => {
         if (!searchObject[tagsMethod].has(tag.toLowerCase())) {
@@ -84,14 +113,18 @@ function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
             const noNeedRender = !handlestaticEvents();
             if (noNeedRender) {
                 searchObject[removeMethod](tag);
-                //! code pour la popover ici pour le cas où le tag est déjà présent dans toutes les recettes affichées
                 displayPopOver(
                     tagLi,
                     "Ce tag est déjà présent dans toutes les recettes affichées",
                     2000
                 );
             }
-            if (!noNeedRender) displaySelectedTags();
+            if (!noNeedRender) {
+                displaySelectedTags();
+                const [input, clearBtn] = listInputElement(addMethod);
+                input.value = "";
+                clearBtn.classList.add("hidden");
+            }
         }
         e.stopPropagation();
     });

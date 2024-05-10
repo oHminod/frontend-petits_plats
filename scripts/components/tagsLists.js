@@ -30,6 +30,7 @@ function addInputEventListener(
 
         if (event.target.value.length > 0)
             clearButton.classList.remove("hidden");
+        else clearButton.classList.add("hidden");
     });
 }
 

@@ -65,6 +65,12 @@ function handleReset() {
     const ingredientList = document.getElementById("ingredients_list");
     const applianceList = document.getElementById("appliance_list");
     const ustensilsList = document.getElementById("ustensils_list");
+    const clearSearchfieldBtn = document.getElementById("reset_searchfield");
+
+    if (clearSearchfieldBtn.classList.contains("flex")) {
+        clearSearchfieldBtn.classList.remove("flex");
+        clearSearchfieldBtn.classList.add("hidden");
+    }
 
     searchObject.reset();
     searchField.value = "";
