@@ -10,13 +10,13 @@ export function setupSearchFieldListener() {
     DOMSearchField.addEventListener("input", () => {
         clearTimeout(dedupInput);
 
+        searchObject.setSearchField(DOMSearchField.value.toLowerCase());
         toggleSearchIcon(DOMSearchField.value.length >= 3);
 
         toggleSearfieldResetButton();
 
         dedupInput = setTimeout(() => {
             if (DOMSearchField.value.length >= 3) {
-                searchObject.setSearchField(DOMSearchField.value.toLowerCase());
                 displayRecipesAndTagsLists();
 
                 return;
@@ -98,7 +98,7 @@ export function toggleSearchIcon(searching) {
         searchButton.addEventListener("click", handleReset);
     } else if (
         searchObject.searchField.length <= 3 &&
-        searchObject.selectedTabs.length === 0
+        searchObject.selectedTabs.size === 0
     ) {
         searchButton.classList.remove("bg-primary");
         searchButton.classList.add("bg-iconBlack");

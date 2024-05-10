@@ -3,13 +3,13 @@ import { toggleSearchIcon } from "./DOMActions.js";
 
 export const searchObject = {
     filteredRecipes: [],
-    selectedTabs: [],
-    ingredientTagsList: [],
-    applianceTagsList: [],
-    ustensilsTagsList: [],
-    ingredientTags: [],
-    applianceTags: [],
-    ustensilsTags: [],
+    selectedTabs: new Set(),
+    ingredientTagsList: new Set(),
+    applianceTagsList: new Set(),
+    ustensilsTagsList: new Set(),
+    ingredientTags: new Set(),
+    applianceTags: new Set(),
+    ustensilsTags: new Set(),
     searchField: "",
 
     setSearchField(tag) {
@@ -17,11 +17,12 @@ export const searchObject = {
     },
 
     _addTag(tagType, tag) {
-        if (!this[tagType].includes(tag.toLowerCase())) {
-            if (this.selectedTabs.length === 0 && this.searchField.length < 3)
+        tag = tag.toLowerCase();
+        if (!this[tagType].has(tag)) {
+            if (this.selectedTabs.size === 0 && this.searchField.length < 3)
                 toggleSearchIcon(true);
-            this[tagType].push(tag.toLowerCase());
-            this.selectedTabs.push(tag.toLowerCase());
+            this[tagType].add(tag);
+            this.selectedTabs.add(tag);
         }
     },
     addIngredientTag(tag) {
@@ -35,13 +36,10 @@ export const searchObject = {
     },
 
     _removeTag(tagType, tag) {
-        this[tagType] = this[tagType].filter(
-            (item) => item !== tag.toLowerCase()
-        );
-        this.selectedTabs = this.selectedTabs.filter(
-            (selectedTab) => selectedTab !== tag.toLowerCase()
-        );
-        if (this.selectedTabs.length === 0 && this.searchField.length < 3)
+        tag = tag.toLowerCase();
+        this[tagType].delete(tag);
+        this.selectedTabs.delete(tag);
+        if (this.selectedTabs.size === 0 && this.searchField.length < 3)
             toggleSearchIcon(false);
     },
     removeIngredientTag(tag) {
@@ -54,17 +52,16 @@ export const searchObject = {
         this._removeTag("ustensilsTags", tag);
     },
     removeSelectedTag(tag) {
-        this.selectedTabs = this.selectedTabs.filter(
-            (selectedTab) => selectedTab !== tag.toLowerCase()
-        );
-        if (this.ingredientTags.includes(tag.toLowerCase())) {
-            this.removeIngredientTag(tag.toLowerCase());
+        tag = tag.toLowerCase();
+        this.selectedTabs.delete(tag);
+        if (this.ingredientTags.has(tag)) {
+            this.removeIngredientTag(tag);
         }
-        if (this.applianceTags.includes(tag.toLowerCase())) {
-            this.removeApplianceTag(tag.toLowerCase());
+        if (this.applianceTags.has(tag)) {
+            this.removeApplianceTag(tag);
         }
-        if (this.ustensilsTags.includes(tag.toLowerCase())) {
-            this.removeUstensilsTag(tag.toLowerCase());
+        if (this.ustensilsTags.has(tag)) {
+            this.removeUstensilsTag(tag);
         }
     },
 
@@ -78,12 +75,10 @@ export const searchObject = {
                     typeof item === "object" && item !== null
                         ? item.ingredient
                         : item;
-                if (!acc.includes(value)) {
-                    acc.push(value);
-                }
+                acc.add(value);
             });
             return acc;
-        }, []);
+        }, new Set());
     },
     setTagsLists() {
         const filteredRecipes = this.filteredRecipes;
@@ -94,11 +89,11 @@ export const searchObject = {
     },
 
     reset() {
-        this.ingredientTags = [];
-        this.applianceTags = [];
-        this.ustensilsTags = [];
+        this.ingredientTags = new Set();
+        this.applianceTags = new Set();
+        this.ustensilsTags = new Set();
         this.searchField = "";
-        this.selectedTabs = [];
+        this.selectedTabs = new Set();
         this.setTagsLists();
     },
 
@@ -108,7 +103,7 @@ export const searchObject = {
         );
     },
     _checkTags(tags, items) {
-        return tags.every((tag) => items.some((item) => item.includes(tag)));
+        return [...tags].every((tag) => items.includes(tag));
     },
     _checkSearchField(searchField, name, description, ingredients) {
         return (
@@ -158,9 +153,9 @@ export const searchObject = {
         const result = recipes.filter((recipe) =>
             searchObject._filterRecipe(
                 recipe,
-                searchObject.ingredientTags,
-                searchObject.applianceTags,
-                searchObject.ustensilsTags,
+                [...searchObject.ingredientTags],
+                [...searchObject.applianceTags],
+                [...searchObject.ustensilsTags],
                 searchObject.searchField
             )
         );
