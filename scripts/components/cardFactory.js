@@ -1,4 +1,5 @@
 import { setAttributes } from "../utils/DOMActions.js";
+import { displayPopOver } from "./popoverCard.js";
 
 function createImage(recipe) {
     const image = document.createElement("img");
@@ -29,8 +30,13 @@ function createRecipeContent(recipe) {
     titreRecette.textContent = "RECETTE";
     const descriptionRecette = document.createElement("p");
     descriptionRecette.className =
-        "text-sm font-normal text-black line-clamp-4";
+        "text-sm font-normal text-black line-clamp-4 hover:cursor-pointer relative";
     descriptionRecette.textContent = recipe.description;
+
+    descriptionRecette.addEventListener("click", (e) => {
+        displayPopOver(descriptionRecette, recipe.description);
+        e.stopPropagation();
+    });
 
     recetteContent.appendChild(titreRecette);
     recetteContent.appendChild(descriptionRecette);
