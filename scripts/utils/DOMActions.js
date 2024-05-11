@@ -2,6 +2,27 @@ import { displayRecipesAndTagsLists } from "../components/cardsSection.js";
 import { displaySelectedTags } from "../components/tagsLists.js";
 import { searchObject } from "./searchObject.js";
 
+// function escapeHTML(unsafeText) {
+//     let div = document.createElement('div');
+//     div.textContent = unsafeText;
+//     return div.innerHTML;
+// }
+
+function sanitizeInput(input, inputElement) {
+    const maxLength = 15;
+    if (input.length > maxLength) {
+        input = input.substring(0, maxLength);
+        inputElement.value = input;
+    }
+
+    return input
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 export function setupSearchFieldListener() {
     const DOMSearchField = document.getElementById("search_field");
 
@@ -10,13 +31,14 @@ export function setupSearchFieldListener() {
     DOMSearchField.addEventListener("input", () => {
         clearTimeout(dedupInput);
 
-        searchObject.setSearchField(DOMSearchField.value.toLowerCase());
-        toggleSearchIcon(DOMSearchField.value.length >= 3);
+        const safeInput = sanitizeInput(DOMSearchField.value, DOMSearchField);
+        searchObject.setSearchField(safeInput.toLowerCase());
+        toggleSearchIcon(safeInput.length >= 3);
 
         toggleSearfieldResetButton();
 
         dedupInput = setTimeout(() => {
-            if (DOMSearchField.value.length >= 3) {
+            if (safeInput.length >= 3) {
                 displayRecipesAndTagsLists();
 
                 return;
