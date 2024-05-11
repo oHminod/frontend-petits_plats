@@ -1,7 +1,7 @@
 export function displayPopOver(target, text, duration = null) {
     const popOver = document.createElement("div");
     popOver.className =
-        "absolute w-fit max-w-[300px] bg-white text-iconBlack text-sm p-4 rounded-[10px] z-50 shadow-md transition-opacity duration-300 ease-out hover:cursor-pointer";
+        "absolute w-fit max-w-[300px] bg-white text-iconBlack text-sm p-4 rounded-[10px] z-50 shadow-lg transition-opacity duration-300 ease-out";
     popOver.textContent = text;
 
     const rect = target.getBoundingClientRect();
@@ -13,6 +13,10 @@ export function displayPopOver(target, text, duration = null) {
     let isClicked = false;
     function closePopOver(event) {
         event.stopPropagation();
+
+        if (event.target === popOver) {
+            return;
+        }
 
         popOver.classList.add("opacity-0");
         popOver.addEventListener("transitionend", () => {

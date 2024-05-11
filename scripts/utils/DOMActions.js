@@ -24,7 +24,7 @@ export function setupSearchFieldListener() {
 
             searchObject.setSearchField("");
             displayRecipesAndTagsLists();
-        }, 500);
+        }, 300);
     });
 
     const resetSearchFieldButton = document.getElementById("reset_searchfield");
