@@ -233,6 +233,8 @@ export const searchObject = {
         return isTagFiltered && isSearchFiltered;
     },
     getFilteredRecipes() {
+        const start = performance.now();
+
         const result = [];
         for (let i = 0; i < recipes.length; i++) {
             if (
@@ -247,7 +249,12 @@ export const searchObject = {
                 result.push(recipes[i]);
             }
         }
+
         searchObject._setFilteredRecipes(result);
+
+        const end = performance.now();
+        console.log("Execution time: ", end - start + "ms");
+
         return result;
     },
 };
