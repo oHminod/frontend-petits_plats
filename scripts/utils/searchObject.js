@@ -158,13 +158,8 @@ export const searchObject = {
         for (let i = 0; i < tags.length; i++) {
             let tagFound = false;
             for (let j = 0; j < items.length; j++) {
-                for (let k = 0; k < items[j].length; k++) {
-                    if (items[j][k] === tags[i]) {
-                        tagFound = true;
-                        break;
-                    }
-                }
-                if (tagFound) {
+                if (items[j].toLowerCase() === tags[i].toLowerCase()) {
+                    tagFound = true;
                     break;
                 }
             }
