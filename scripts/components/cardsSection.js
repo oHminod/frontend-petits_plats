@@ -33,18 +33,14 @@ export function displayRecipes() {
     const selectedTags = searchObject.selectedTabs;
     const moreThanOneRecipeIsFound = recipes.length > 1;
     const oneRecipeFound = recipes.length === 1;
-    const tagsAreSelected = selectedTags.size > 0;
+    const tagsAreSelected = selectedTags.length > 0;
 
     let stringOfTags = "";
 
     if (tagsAreSelected) {
-        if (selectedTags.size > 1) {
-            const selectedTagsArray = Array.from(selectedTags);
-            const allButLast = selectedTagsArray.slice(
-                0,
-                selectedTagsArray.length - 1
-            );
-            const last = selectedTagsArray[selectedTagsArray.length - 1];
+        if (selectedTags.length > 1) {
+            const allButLast = selectedTags.slice(0, selectedTags.length - 1);
+            const last = selectedTags[selectedTags.length - 1];
             stringOfTags = allButLast.join(", ") + " et " + last;
         } else {
             stringOfTags = selectedTags[0];

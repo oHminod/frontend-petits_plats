@@ -108,7 +108,7 @@ function listInputElement(addMethod) {
 
 function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
     tagLi.addEventListener("click", (e) => {
-        if (!searchObject[tagsMethod].has(tag.toLowerCase())) {
+        if (!searchObject[tagsMethod].includes(tag.toLowerCase())) {
             searchObject[addMethod](tag);
             const noNeedRender = !handlestaticEvents();
             if (noNeedRender) {
@@ -136,7 +136,7 @@ function handleMouseEvents(
     tag,
     { removeMethod, tagsMethod }
 ) {
-    if (searchObject[tagsMethod].has(tag.toLowerCase())) {
+    if (searchObject[tagsMethod].includes(tag.toLowerCase())) {
         tagLi.addEventListener("mouseenter", () => {
             closeIcon.classList.remove("hidden");
         });

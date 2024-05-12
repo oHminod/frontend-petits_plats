@@ -50,9 +50,9 @@ function addClearButtonEventListener(
 }
 
 export function diplayTagsListsDOM() {
-    const ingredientsTags = Array.from(searchObject.ingredientTagsList);
-    const applianceTags = Array.from(searchObject.applianceTagsList);
-    const ustensilsTags = Array.from(searchObject.ustensilsTagsList);
+    const ingredientsTags = searchObject.ingredientTagsList;
+    const applianceTags = searchObject.applianceTagsList;
+    const ustensilsTags = searchObject.ustensilsTagsList;
 
     const DOMIngredientsTagsList = document.getElementById(
         "ingredients_tags_list"
@@ -139,7 +139,7 @@ export function displaySelectedTags() {
     const tagSectionContainer = document.createElement("div");
     tagSectionContainer.className =
         "flex flex-wrap gap-6 items-center px-[102px] pt-[13px]";
-    const selectedTags = Array.from(searchObject.selectedTabs);
+    const selectedTags = searchObject.selectedTabs;
 
     tagsSection.innerHTML = "";
     if (selectedTags.length === 0) return;

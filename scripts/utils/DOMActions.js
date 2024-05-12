@@ -126,7 +126,7 @@ export function toggleSearchIcon(searching) {
         searchButton.addEventListener("click", handleReset);
     } else if (
         searchObject.searchField.length <= 3 &&
-        searchObject.selectedTabs.size === 0
+        searchObject.selectedTabs.length === 0
     ) {
         searchButton.classList.remove("bg-primary");
         searchButton.classList.add("bg-iconBlack");
