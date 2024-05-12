@@ -17,7 +17,14 @@ export const searchObject = {
     },
 
     _addTag(tagType, tag) {
-        if (!this[tagType].includes(tag.toLowerCase())) {
+        let found = false;
+        for (let i = 0; i < this[tagType].length; i++) {
+            if (this[tagType][i] === tag.toLowerCase()) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
             if (this.selectedTabs.length === 0 && this.searchField.length < 3)
                 toggleSearchIcon(true);
             this[tagType].push(tag.toLowerCase());
@@ -35,12 +42,22 @@ export const searchObject = {
     },
 
     _removeTag(tagType, tag) {
-        this[tagType] = this[tagType].filter(
-            (item) => item !== tag.toLowerCase()
-        );
-        this.selectedTabs = this.selectedTabs.filter(
-            (selectedTab) => selectedTab !== tag.toLowerCase()
-        );
+        let newArray = [];
+        for (let i = 0; i < this[tagType].length; i++) {
+            if (this[tagType][i] !== tag.toLowerCase()) {
+                newArray.push(this[tagType][i]);
+            }
+        }
+        this[tagType] = newArray;
+
+        newArray = [];
+        for (let i = 0; i < this.selectedTabs.length; i++) {
+            if (this.selectedTabs[i] !== tag.toLowerCase()) {
+                newArray.push(this.selectedTabs[i]);
+            }
+        }
+        this.selectedTabs = newArray;
+
         if (this.selectedTabs.length === 0 && this.searchField.length < 3)
             toggleSearchIcon(false);
     },
@@ -54,36 +71,59 @@ export const searchObject = {
         this._removeTag("ustensilsTags", tag);
     },
     removeSelectedTag(tag) {
-        this.selectedTabs = this.selectedTabs.filter(
-            (selectedTab) => selectedTab !== tag.toLowerCase()
-        );
-        if (this.ingredientTags.includes(tag.toLowerCase())) {
-            this.removeIngredientTag(tag.toLowerCase());
+        let newArray = [];
+        for (let i = 0; i < this.selectedTabs.length; i++) {
+            if (this.selectedTabs[i] !== tag.toLowerCase()) {
+                newArray.push(this.selectedTabs[i]);
+            }
         }
-        if (this.applianceTags.includes(tag.toLowerCase())) {
-            this.removeApplianceTag(tag.toLowerCase());
+        this.selectedTabs = newArray;
+
+        for (let i = 0; i < this.ingredientTags.length; i++) {
+            if (this.ingredientTags[i] === tag.toLowerCase()) {
+                this.removeIngredientTag(tag.toLowerCase());
+                break;
+            }
         }
-        if (this.ustensilsTags.includes(tag.toLowerCase())) {
-            this.removeUstensilsTag(tag.toLowerCase());
+        for (let i = 0; i < this.applianceTags.length; i++) {
+            if (this.applianceTags[i] === tag.toLowerCase()) {
+                this.removeApplianceTag(tag.toLowerCase());
+                break;
+            }
+        }
+        for (let i = 0; i < this.ustensilsTags.length; i++) {
+            if (this.ustensilsTags[i] === tag.toLowerCase()) {
+                this.removeUstensilsTag(tag.toLowerCase());
+                break;
+            }
         }
     },
 
     _setTagsList(tagType, property, recipes) {
-        this[tagType] = recipes.reduce((acc, recipe) => {
+        this[tagType] = [];
+        for (let i = 0; i < recipes.length; i++) {
+            const recipe = recipes[i];
             const items = Array.isArray(recipe[property])
                 ? recipe[property]
                 : [recipe[property]];
-            items.forEach((item) => {
+            for (let j = 0; j < items.length; j++) {
+                const item = items[j];
                 const value =
                     typeof item === "object" && item !== null
                         ? item.ingredient
                         : item;
-                if (!acc.includes(value)) {
-                    acc.push(value);
+                let found = false;
+                for (let k = 0; k < this[tagType].length; k++) {
+                    if (this[tagType][k] === value) {
+                        found = true;
+                        break;
+                    }
                 }
-            });
-            return acc;
-        }, []);
+                if (!found) {
+                    this[tagType].push(value);
+                }
+            }
+        }
     },
     setTagsLists() {
         const filteredRecipes = this.filteredRecipes;
@@ -109,15 +149,33 @@ export const searchObject = {
         );
     },
     _checkTags(tags, items) {
-        return tags.every((tag) => items.some((item) => item.includes(tag)));
+        for (let i = 0; i < tags.length; i++) {
+            let tagFound = false;
+            for (let j = 0; j < items.length; j++) {
+                if (items[j].includes(tags[i])) {
+                    tagFound = true;
+                    break;
+                }
+            }
+            if (!tagFound) {
+                return false;
+            }
+        }
+        return true;
     },
     _checkSearchField(searchField, name, description, ingredients) {
-        return (
-            searchField.trim() === "" ||
-            name.includes(searchField) ||
-            description.includes(searchField) ||
-            ingredients.some((ingredient) => ingredient.includes(searchField))
-        );
+        if (searchField.trim() === "") {
+            return true;
+        }
+        if (name.includes(searchField) || description.includes(searchField)) {
+            return true;
+        }
+        for (let i = 0; i < ingredients.length; i++) {
+            if (ingredients[i].includes(searchField)) {
+                return true;
+            }
+        }
+        return false;
     },
     _setFilteredRecipes(recipes) {
         this.filteredRecipes = recipes;
@@ -153,15 +211,20 @@ export const searchObject = {
         return isTagFiltered && isSearchFiltered;
     },
     getFilteredRecipes() {
-        const result = recipes.filter((recipe) =>
-            searchObject._filterRecipe(
-                recipe,
-                searchObject.ingredientTags,
-                searchObject.applianceTags,
-                searchObject.ustensilsTags,
-                searchObject.searchField
-            )
-        );
+        const result = [];
+        for (let i = 0; i < recipes.length; i++) {
+            if (
+                searchObject._filterRecipe(
+                    recipes[i],
+                    searchObject.ingredientTags,
+                    searchObject.applianceTags,
+                    searchObject.ustensilsTags,
+                    searchObject.searchField
+                )
+            ) {
+                result.push(recipes[i]);
+            }
+        }
         searchObject._setFilteredRecipes(result);
         return result;
     },
