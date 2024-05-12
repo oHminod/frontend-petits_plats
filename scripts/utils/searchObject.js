@@ -89,6 +89,7 @@ export const searchObject = {
     },
 
     reset() {
+        this.filteredRecipes = [];
         this.ingredientTags = new Set();
         this.applianceTags = new Set();
         this.ustensilsTags = new Set();
@@ -110,9 +111,6 @@ export const searchObject = {
             searchField.trim() === "" ||
             name.includes(searchField) ||
             description.includes(searchField) ||
-            ingredients.some((ingredient) =>
-                ingredient.includes(searchField)
-            ) ||
             ingredients.some((ingredient) => ingredient.includes(searchField))
         );
     },
