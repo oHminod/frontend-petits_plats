@@ -16,6 +16,21 @@ export const searchObject = {
         this.searchField = tag;
     },
 
+    _addTagFast(tagType, tag) {
+        let found = false;
+        for (let i = 0; i < this[tagType].length; i++) {
+            if (this[tagType][i] === tag.toLowerCase()) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            if (this.selectedTabs.length === 0 && this.searchField.length < 3)
+                toggleSearchIcon(true);
+            this[tagType].push(tag.toLowerCase());
+            this.selectedTabs.push(tag.toLowerCase());
+        }
+    },
     _addTag(tagType, tag) {
         tag = tag.toLowerCase();
         if (!this[tagType].has(tag)) {
@@ -148,6 +163,8 @@ export const searchObject = {
         return isTagFiltered && isSearchFiltered;
     },
     getFilteredRecipes() {
+        const start = performance.now();
+
         const result = recipes.filter((recipe) =>
             searchObject._filterRecipe(
                 recipe,
@@ -159,6 +176,9 @@ export const searchObject = {
         );
 
         searchObject._setFilteredRecipes(result);
+
+        const end = performance.now();
+        console.log("Execution time: ", end - start + "ms");
 
         return result;
     },
