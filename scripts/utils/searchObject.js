@@ -144,16 +144,27 @@ export const searchObject = {
     },
 
     _getLowerCaseItems(items, property = "") {
-        return items.map((item) =>
-            property ? item[property].toLowerCase() : item.toLowerCase()
-        );
+        let lowerCaseItems = [];
+        for (let i = 0; i < items.length; i++) {
+            if (property) {
+                lowerCaseItems.push(items[i][property].toLowerCase());
+            } else {
+                lowerCaseItems.push(items[i].toLowerCase());
+            }
+        }
+        return lowerCaseItems;
     },
     _checkTags(tags, items) {
         for (let i = 0; i < tags.length; i++) {
             let tagFound = false;
             for (let j = 0; j < items.length; j++) {
-                if (items[j].includes(tags[i])) {
-                    tagFound = true;
+                for (let k = 0; k < items[j].length; k++) {
+                    if (items[j][k] === tags[i]) {
+                        tagFound = true;
+                        break;
+                    }
+                }
+                if (tagFound) {
                     break;
                 }
             }
@@ -163,15 +174,26 @@ export const searchObject = {
         }
         return true;
     },
+    _includes(str, searchStr) {
+        for (let i = 0; i <= str.length - searchStr.length; i++) {
+            if (str.substring(i, i + searchStr.length) === searchStr) {
+                return true;
+            }
+        }
+        return false;
+    },
     _checkSearchField(searchField, name, description, ingredients) {
         if (searchField.trim() === "") {
             return true;
         }
-        if (name.includes(searchField) || description.includes(searchField)) {
+        if (
+            this._includes(name, searchField) ||
+            this._includes(description, searchField)
+        ) {
             return true;
         }
         for (let i = 0; i < ingredients.length; i++) {
-            if (ingredients[i].includes(searchField)) {
+            if (this._includes(ingredients[i], searchField)) {
                 return true;
             }
         }
