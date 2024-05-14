@@ -5,16 +5,14 @@ import { diplayTagsListsDOM } from "./tagsLists.js";
 let oldRecipes = [];
 
 export function displayRecipesAndTagsLists() {
+    console.log("displayRecipesAndTagsLists");
     displayRecipes();
     searchObject.setTagsLists();
-    const needToRender = diplayTagsListsDOM();
-
-    return needToRender;
+    diplayTagsListsDOM();
 }
 
 export function displayRecipes() {
-    const getFilteredRecipes = searchObject.getFilteredRecipes;
-    const recipes = getFilteredRecipes();
+    const recipes = searchObject.filteredRecipes;
     const recipeSection = document.getElementById("recipes_section");
     const stringifiedRecipes = JSON.stringify(recipes);
     const stringifiedOldRecipes = JSON.stringify(oldRecipes);

@@ -109,17 +109,21 @@ function listInputElement(addMethod) {
 function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
     tagLi.addEventListener("click", (e) => {
         if (!searchObject[tagsMethod].has(tag.toLowerCase())) {
-            searchObject[addMethod](tag);
-            const noNeedRender = !handlestaticEvents();
-            if (noNeedRender) {
-                searchObject[removeMethod](tag);
+            const needRender = searchObject.allRecipesContainTag(
+                tag,
+                removeMethod
+            );
+            console.log("needRender", needRender);
+            if (!needRender) {
                 displayPopOver(
                     tagLi,
                     "Ce tag est déjà présent dans toutes les recettes affichées",
                     2000
                 );
             }
-            if (!noNeedRender) {
+            if (needRender) {
+                searchObject[addMethod](tag);
+                displayRecipesAndTagsLists();
                 displaySelectedTags();
                 const [input, clearBtn] = listInputElement(addMethod);
                 input.value = "";
@@ -151,13 +155,7 @@ function handleCloseIconClick(closeIcon, tag, removeMethod) {
     closeIcon.addEventListener("click", (e) => {
         e.stopPropagation();
         searchObject[removeMethod](tag.toLowerCase());
-        handlestaticEvents();
+        displayRecipesAndTagsLists();
         displaySelectedTags();
     });
-}
-
-function handlestaticEvents() {
-    const needToRender = displayRecipesAndTagsLists();
-
-    return needToRender;
 }

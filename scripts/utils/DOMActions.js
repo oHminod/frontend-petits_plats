@@ -32,13 +32,13 @@ export function setupSearchFieldListener() {
         clearTimeout(dedupInput);
 
         const safeInput = sanitizeInput(DOMSearchField.value, DOMSearchField);
-        searchObject.setSearchField(safeInput.toLowerCase());
         toggleSearchIcon(safeInput.length >= 3);
 
         toggleSearfieldResetButton();
 
         dedupInput = setTimeout(() => {
             if (safeInput.length >= 3) {
+                searchObject.setSearchField(safeInput.toLowerCase());
                 displayRecipesAndTagsLists();
 
                 return;
@@ -94,7 +94,6 @@ function handleReset() {
         clearSearchfieldBtn.classList.add("hidden");
     }
 
-    searchObject.reset();
     searchField.value = "";
     filterIngredientsInput.value = "";
     filterApplianceInput.value = "";
@@ -105,8 +104,11 @@ function handleReset() {
     ingredientList.classList.add("hidden");
     applianceList.classList.add("hidden");
     ustensilsList.classList.add("hidden");
+
+    searchObject.reset();
     displayRecipesAndTagsLists();
     displaySelectedTags();
+
     searchButton.classList.remove("bg-primary");
     searchButton.classList.add("bg-iconBlack");
     iconPart1.setAttribute("stroke", "white");
