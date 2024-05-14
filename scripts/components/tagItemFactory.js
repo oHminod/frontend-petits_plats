@@ -113,7 +113,7 @@ function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
                 tag,
                 removeMethod
             );
-            console.log("needRender", needRender);
+
             if (!needRender) {
                 displayPopOver(
                     tagLi,
@@ -121,6 +121,7 @@ function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
                     2000
                 );
             }
+
             if (needRender) {
                 searchObject[addMethod](tag);
                 displayRecipesAndTagsLists();

@@ -46,13 +46,11 @@ export const searchObject = {
                 toggleSearchIcon(true);
             this[tagType].add(tag);
             this.selectedTabs.add(tag);
-            console.log("filteredRecipes", this.filteredRecipes);
             this.getFilteredRecipes(this.filteredRecipes);
         }
     },
     addIngredientTag(tag) {
         this._addTag("ingredientTags", tag);
-        console.log("ingredientTags", tag);
     },
     addApplianceTag(tag) {
         this._addTag("applianceTags", tag);
@@ -146,7 +144,6 @@ export const searchObject = {
             const items = Array.isArray(recipe[property])
                 ? recipe[property]
                 : [recipe[property]];
-            console.log("items", items);
             const itemsLowerCase = this._getLowerCaseItems(
                 items,
                 typeof items[0] === "object" ? "ingredient" : ""

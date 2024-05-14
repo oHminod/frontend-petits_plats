@@ -5,7 +5,6 @@ import { diplayTagsListsDOM } from "./tagsLists.js";
 let oldRecipes = [];
 
 export function displayRecipesAndTagsLists() {
-    console.log("displayRecipesAndTagsLists");
     displayRecipes();
     searchObject.setTagsLists();
     diplayTagsListsDOM();
@@ -19,12 +18,15 @@ export function displayRecipes() {
     const totalRecipesNumber = document.getElementById("total_recipes_number");
 
     if (stringifiedRecipes !== stringifiedOldRecipes) {
+        console.log("New render");
         recipeSection.innerHTML = "";
         recipes.forEach((recipe) => {
             const recipeCard = createRecipeCard(recipe);
             recipeSection.appendChild(recipeCard);
         });
         oldRecipes = recipes;
+    } else {
+        console.log("No new render");
     }
 
     const searchField = searchObject.searchField;
@@ -36,7 +38,7 @@ export function displayRecipes() {
     let stringOfTags = "";
 
     if (tagsAreSelected) {
-        if (selectedTags.size > 1) {
+        if (selectedTags.size > 0) {
             const selectedTagsArray = Array.from(selectedTags);
             const allButLast = selectedTagsArray.slice(
                 0,
