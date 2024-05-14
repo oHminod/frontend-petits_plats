@@ -13,9 +13,32 @@ export const searchObject = {
     searchField: "",
 
     setSearchField(tag) {
+        const previousLength = this.searchField.length;
         this.searchField = tag;
+        if (tag.length !== previousLength) {
+            if (tag.length > previousLength) {
+                this.getFilteredRecipes(this.filteredRecipes);
+            } else {
+                this.getFilteredRecipes(recipes);
+            }
+        }
     },
 
+    _addTagFast(tagType, tag) {
+        let found = false;
+        for (let i = 0; i < this[tagType].length; i++) {
+            if (this[tagType][i] === tag.toLowerCase()) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            if (this.selectedTabs.length === 0 && this.searchField.length < 3)
+                toggleSearchIcon(true);
+            this[tagType].push(tag.toLowerCase());
+            this.selectedTabs.push(tag.toLowerCase());
+        }
+    },
     _addTag(tagType, tag) {
         tag = tag.toLowerCase();
         if (!this[tagType].has(tag)) {
@@ -23,6 +46,7 @@ export const searchObject = {
                 toggleSearchIcon(true);
             this[tagType].add(tag);
             this.selectedTabs.add(tag);
+            this.getFilteredRecipes(this.filteredRecipes);
         }
     },
     addIngredientTag(tag) {
@@ -35,21 +59,26 @@ export const searchObject = {
         this._addTag("ustensilsTags", tag);
     },
 
-    _removeTag(tagType, tag) {
+    _removeTag(tagType, tag, removeTagFromUI = false) {
         tag = tag.toLowerCase();
         this[tagType].delete(tag);
         this.selectedTabs.delete(tag);
         if (this.selectedTabs.size === 0 && this.searchField.length < 3)
             toggleSearchIcon(false);
+        if (removeTagFromUI) {
+            this.getFilteredRecipes(recipes);
+        } else {
+            this.getFilteredRecipes(this.filteredRecipes);
+        }
     },
     removeIngredientTag(tag) {
-        this._removeTag("ingredientTags", tag);
+        this._removeTag("ingredientTags", tag, true);
     },
     removeApplianceTag(tag) {
-        this._removeTag("applianceTags", tag);
+        this._removeTag("applianceTags", tag, true);
     },
     removeUstensilsTag(tag) {
-        this._removeTag("ustensilsTags", tag);
+        this._removeTag("ustensilsTags", tag, true);
     },
     removeSelectedTag(tag) {
         tag = tag.toLowerCase();
@@ -63,6 +92,7 @@ export const searchObject = {
         if (this.ustensilsTags.has(tag)) {
             this.removeUstensilsTag(tag);
         }
+        this.getFilteredRecipes(this.filteredRecipes);
     },
 
     _setTagsList(tagType, property, recipes) {
@@ -95,6 +125,7 @@ export const searchObject = {
         this.ustensilsTags = new Set();
         this.searchField = "";
         this.selectedTabs = new Set();
+        this.getFilteredRecipes();
         this.setTagsLists();
     },
 
@@ -102,6 +133,26 @@ export const searchObject = {
         return items.map((item) =>
             property ? item[property].toLowerCase() : item.toLowerCase()
         );
+    },
+
+    allRecipesContainTag(tag, property) {
+        tag = tag.toLowerCase();
+        if (property === "removeIngredientTag") property = "ingredients";
+        if (property === "removeApplianceTag") property = "appliance";
+        if (property === "removeUstensilsTag") property = "ustensils";
+        for (let recipe of this.filteredRecipes) {
+            const items = Array.isArray(recipe[property])
+                ? recipe[property]
+                : [recipe[property]];
+            const itemsLowerCase = this._getLowerCaseItems(
+                items,
+                typeof items[0] === "object" ? "ingredient" : ""
+            );
+            if (!itemsLowerCase.includes(tag)) {
+                return true;
+            }
+        }
+        return false;
     },
     _checkTags(tags, items) {
         return [...tags].every((tag) => items.includes(tag));
@@ -147,8 +198,11 @@ export const searchObject = {
 
         return isTagFiltered && isSearchFiltered;
     },
-    getFilteredRecipes() {
-        const result = recipes.filter((recipe) =>
+    getFilteredRecipes(recipesToFilter = recipes) {
+        const start = performance.now();
+        console.log("recipesToFilter", recipesToFilter.length);
+
+        const result = recipesToFilter.filter((recipe) =>
             searchObject._filterRecipe(
                 recipe,
                 [...searchObject.ingredientTags],
@@ -159,6 +213,9 @@ export const searchObject = {
         );
 
         searchObject._setFilteredRecipes(result);
+
+        const end = performance.now();
+        console.log("Execution time: ", end - start + "ms");
 
         return result;
     },

@@ -7,26 +7,26 @@ let oldRecipes = [];
 export function displayRecipesAndTagsLists() {
     displayRecipes();
     searchObject.setTagsLists();
-    const needToRender = diplayTagsListsDOM();
-
-    return needToRender;
+    diplayTagsListsDOM();
 }
 
 export function displayRecipes() {
-    const getFilteredRecipes = searchObject.getFilteredRecipes;
-    const recipes = getFilteredRecipes();
+    const recipes = searchObject.filteredRecipes;
     const recipeSection = document.getElementById("recipes_section");
     const stringifiedRecipes = JSON.stringify(recipes);
     const stringifiedOldRecipes = JSON.stringify(oldRecipes);
     const totalRecipesNumber = document.getElementById("total_recipes_number");
 
     if (stringifiedRecipes !== stringifiedOldRecipes) {
+        console.log("New render");
         recipeSection.innerHTML = "";
         recipes.forEach((recipe) => {
             const recipeCard = createRecipeCard(recipe);
             recipeSection.appendChild(recipeCard);
         });
         oldRecipes = recipes;
+    } else {
+        console.log("No new render");
     }
 
     const searchField = searchObject.searchField;
@@ -38,7 +38,7 @@ export function displayRecipes() {
     let stringOfTags = "";
 
     if (tagsAreSelected) {
-        if (selectedTags.size > 1) {
+        if (selectedTags.size > 0) {
             const selectedTagsArray = Array.from(selectedTags);
             const allButLast = selectedTagsArray.slice(
                 0,
