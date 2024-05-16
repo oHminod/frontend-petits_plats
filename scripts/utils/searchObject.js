@@ -77,7 +77,6 @@ export const searchObject = {
         if (this.ustensilsTags.has(tag)) {
             this.removeUstensilsTag(tag);
         }
-        this.getFilteredRecipes(this.filteredRecipes);
     },
 
     _setTagsList(tagType, property, recipes) {
