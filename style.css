@@ -1265,6 +1265,38 @@ video {
     appearance: auto;
 }
 
+.break-before-auto {
+    -moz-column-break-before: auto;
+}
+
+.break-before-avoid {
+    -moz-column-break-before: avoid;
+}
+
+.break-before-all {
+    -moz-column-break-before: all;
+}
+
+.break-before-avoid-page {
+    -moz-column-break-before: avoid;
+}
+
+.break-before-page {
+    -moz-column-break-before: page;
+}
+
+.break-before-left {
+    -moz-column-break-before: left;
+}
+
+.break-before-right {
+    -moz-column-break-before: right;
+}
+
+.break-before-column {
+    -moz-column-break-before: column;
+}
+
 .break-inside-auto {
     -moz-column-break-inside: auto;
     break-inside: auto;
@@ -1296,6 +1328,7 @@ video {
 
 .break-after-all {
     -moz-column-break-after: all;
+    break-after: all;
 }
 
 .break-after-avoid-page {
