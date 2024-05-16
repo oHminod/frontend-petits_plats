@@ -24,21 +24,6 @@ export const searchObject = {
         }
     },
 
-    _addTagFast(tagType, tag) {
-        let found = false;
-        for (let i = 0; i < this[tagType].length; i++) {
-            if (this[tagType][i] === tag.toLowerCase()) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            if (this.selectedTabs.length === 0 && this.searchField.length < 3)
-                toggleSearchIcon(true);
-            this[tagType].push(tag.toLowerCase());
-            this.selectedTabs.push(tag.toLowerCase());
-        }
-    },
     _addTag(tagType, tag) {
         tag = tag.toLowerCase();
         if (!this[tagType].has(tag)) {
@@ -155,8 +140,9 @@ export const searchObject = {
         return false;
     },
     _checkTags(tags, items) {
-        return [...tags].every((tag) => items.includes(tag));
+        return [...tags].every((tag) => items.has(tag));
     },
+
     _checkSearchField(searchField, name, description, ingredients) {
         return (
             searchField.trim() === "" ||
@@ -165,9 +151,11 @@ export const searchObject = {
             ingredients.some((ingredient) => ingredient.includes(searchField))
         );
     },
+
     _setFilteredRecipes(recipes) {
         this.filteredRecipes = recipes;
     },
+
     _filterRecipe(
         recipe,
         ingredientTags,
@@ -175,12 +163,11 @@ export const searchObject = {
         ustensilsTags,
         searchField
     ) {
-        const ingredients = this._getLowerCaseItems(
-            recipe.ingredients,
-            "ingredient"
+        const ingredients = new Set(
+            this._getLowerCaseItems(recipe.ingredients, "ingredient")
         );
-        const appliances = [recipe.appliance.toLowerCase()];
-        const ustensils = this._getLowerCaseItems(recipe.ustensils);
+        const appliances = new Set([recipe.appliance.toLowerCase()]);
+        const ustensils = new Set(this._getLowerCaseItems(recipe.ustensils));
         const name = recipe.name.toLowerCase();
         const description = recipe.description.toLowerCase();
 
@@ -193,11 +180,12 @@ export const searchObject = {
             searchField,
             name,
             description,
-            ingredients
+            [...ingredients]
         );
 
         return isTagFiltered && isSearchFiltered;
     },
+
     getFilteredRecipes(recipesToFilter = recipes) {
         const start = performance.now();
         console.log("recipesToFilter", recipesToFilter.length);
@@ -205,9 +193,9 @@ export const searchObject = {
         const result = recipesToFilter.filter((recipe) =>
             searchObject._filterRecipe(
                 recipe,
-                [...searchObject.ingredientTags],
-                [...searchObject.applianceTags],
-                [...searchObject.ustensilsTags],
+                searchObject.ingredientTags,
+                searchObject.applianceTags,
+                searchObject.ustensilsTags,
                 searchObject.searchField
             )
         );
