@@ -25,11 +25,4 @@ module.exports = {
             },
         },
     },
-    plugins: [],
-    safelist: [
-        "break-before-all", // Ajoutez ici toute autre classe problématique
-    ],
-    corePlugins: {
-        breakBefore: false, // Désactiver le plugin qui génère break-before: all;
-    },
 };
