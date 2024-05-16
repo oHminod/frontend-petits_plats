@@ -21,12 +21,15 @@ export function displayRecipes() {
     const totalRecipesNumber = document.getElementById("total_recipes_number");
 
     if (stringifiedRecipes !== stringifiedOldRecipes) {
+        console.log("New render");
         recipeSection.innerHTML = "";
         recipes.forEach((recipe) => {
             const recipeCard = createRecipeCard(recipe);
             recipeSection.appendChild(recipeCard);
         });
         oldRecipes = recipes;
+    } else {
+        console.log("No new render");
     }
 
     const searchField = searchObject.searchField;

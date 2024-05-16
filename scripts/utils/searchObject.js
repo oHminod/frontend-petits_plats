@@ -229,6 +229,7 @@ export const searchObject = {
     },
     getFilteredRecipes() {
         const start = performance.now();
+        console.log("recipesToFilter", recipes.length);
 
         const result = [];
         for (let i = 0; i < recipes.length; i++) {
