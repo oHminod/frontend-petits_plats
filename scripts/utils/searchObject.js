@@ -66,8 +66,6 @@ export const searchObject = {
         this._removeTag("ustensilsTags", tag, true);
     },
     removeSelectedTag(tag) {
-        tag = tag.toLowerCase();
-        this.selectedTabs.delete(tag);
         if (this.ingredientTags.has(tag)) {
             this.removeIngredientTag(tag);
         }
@@ -202,7 +200,10 @@ export const searchObject = {
         searchObject._setFilteredRecipes(result);
 
         const end = performance.now();
-        console.log("Execution time: ", end - start + "ms");
+        console.log(
+            "Execution time: ",
+            ((end - start) * 1000).toFixed(1) + "μs"
+        );
 
         return result;
     },
