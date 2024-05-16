@@ -249,8 +249,10 @@ export const searchObject = {
         searchObject._setFilteredRecipes(result);
 
         const end = performance.now();
-        console.log("Execution time: ", (end - start) * 1000 + "μs");
-
+        console.log(
+            "Execution time: ",
+            ((end - start) * 1000).toFixed(1) + "μs"
+        );
         return result;
     },
 };
