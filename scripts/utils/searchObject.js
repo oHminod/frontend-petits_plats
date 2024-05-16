@@ -251,7 +251,7 @@ export const searchObject = {
         const end = performance.now();
         console.log(
             "Execution time: ",
-            ((end - start) * 1000).toFixed(1) + "μs"
+            Math.floor((end - start) * 10000) / 10 + "μs"
         );
         return result;
     },
