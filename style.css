@@ -1267,10 +1267,12 @@ video {
 
 .break-before-auto {
     -moz-column-break-before: auto;
+    break-before: auto;
 }
 
 .break-before-avoid {
     -moz-column-break-before: avoid;
+    break-before: avoid;
 }
 
 .break-before-all {
@@ -1279,22 +1281,27 @@ video {
 
 .break-before-avoid-page {
     -moz-column-break-before: avoid;
+    break-before: avoid-page;
 }
 
 .break-before-page {
     -moz-column-break-before: page;
+    break-before: page;
 }
 
 .break-before-left {
     -moz-column-break-before: left;
+    break-before: left;
 }
 
 .break-before-right {
     -moz-column-break-before: right;
+    break-before: right;
 }
 
 .break-before-column {
     -moz-column-break-before: column;
+    break-before: column;
 }
 
 .break-inside-auto {
@@ -1328,7 +1335,6 @@ video {
 
 .break-after-all {
     -moz-column-break-after: all;
-    break-after: all;
 }
 
 .break-after-avoid-page {
