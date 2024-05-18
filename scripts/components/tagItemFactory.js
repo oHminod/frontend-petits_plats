@@ -4,6 +4,12 @@ import { displayRecipesAndTagsLists } from "./cardsSection.js";
 import { displayPopOver } from "./popoverCard.js";
 import { displaySelectedTags } from "./tagsLists.js";
 
+/**
+ * Crée un élément de tag.
+ * @param {string} tag - Le nom du tag.
+ * @param {string} type - Le type du tag.
+ * @returns {HTMLElement} L'élément de tag créé.
+ */
 export function createTagItem(tag, type) {
     const tagLi = document.createElement("li");
     tagLi.className =
@@ -39,6 +45,10 @@ export function createTagItem(tag, type) {
     return tagLi;
 }
 
+/**
+ * Crée une icône de fermeture.
+ * @returns {HTMLElement} L'icône de fermeture créée.
+ */
 function createCloseIcon() {
     const closeIcon = document.createElementNS(
         "http://www.w3.org/2000/svg",
@@ -77,6 +87,11 @@ function createCloseIcon() {
     return closeIcon;
 }
 
+/**
+ * Renvoie les éléments d'entrée de la liste en fonction de la méthode d'ajout.
+ * @param {string} addMethod - La méthode d'ajout.
+ * @returns {Array} Un tableau contenant l'élément d'entrée et le bouton de suppression.
+ */
 function listInputElement(addMethod) {
     const ingredientsInput = document.getElementById(
         "filter_ingredients_input"
@@ -106,6 +121,12 @@ function listInputElement(addMethod) {
     }
 }
 
+/**
+ * Gère le clic sur un tag.
+ * @param {HTMLElement} tagLi - L'élément de tag.
+ * @param {string} tag - Le nom du tag.
+ * @param {Object} methods - Les méthodes pour ajouter, supprimer et obtenir les tags.
+ */
 function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
     tagLi.addEventListener("click", (e) => {
         if (!searchObject[tagsMethod].has(tag.toLowerCase())) {
@@ -135,6 +156,13 @@ function handleTagClick(tagLi, tag, { addMethod, removeMethod, tagsMethod }) {
     });
 }
 
+/**
+ * Gère les événements de la souris sur un tag.
+ * @param {HTMLElement} tagLi - L'élément de tag.
+ * @param {HTMLElement} closeIcon - L'icône de fermeture.
+ * @param {string} tag - Le nom du tag.
+ * @param {Object} methods - Les méthodes pour supprimer et obtenir les tags.
+ */
 function handleMouseEvents(
     tagLi,
     closeIcon,
@@ -152,6 +180,12 @@ function handleMouseEvents(
     }
 }
 
+/**
+ * Gère le clic sur l'icône de fermeture.
+ * @param {HTMLElement} closeIcon - L'icône de fermeture.
+ * @param {string} tag - Le nom du tag.
+ * @param {string} removeMethod - La méthode pour supprimer le tag.
+ */
 function handleCloseIconClick(closeIcon, tag, removeMethod) {
     closeIcon.addEventListener("click", (e) => {
         e.stopPropagation();
