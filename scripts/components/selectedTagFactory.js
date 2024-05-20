@@ -4,6 +4,8 @@ import { displayRecipesAndTagsLists } from "./cardsSection.js";
 import { displaySelectedTags } from "./tagsLists.js";
 
 export function createSelectedTagDOM(tag) {
+    const tagType = tag.split("--")[0];
+    tag = tag.split("--")[1];
     const tagDiv = document.createElement("div");
     tagDiv.className =
         "flex items-center gap-14 bg-primary text-black text-sm rounded-[10px] h-[53px] px-[18px] py-2";
@@ -39,7 +41,7 @@ export function createSelectedTagDOM(tag) {
     tagDiv.appendChild(closeIcon);
 
     closeIcon.addEventListener("click", () => {
-        searchObject.removeSelectedTag(tag);
+        searchObject.removeSelectedTag(tag, tagType);
         displayRecipesAndTagsLists();
         displaySelectedTags();
     });

@@ -35,13 +35,13 @@ export const searchObject = {
      */
     _addTag(tagType, tag) {
         tag = tag.toLowerCase();
-        if (!this[tagType].has(tag)) {
-            if (this.selectedTabs.size === 0 && this.searchField.length < 3)
-                toggleSearchIcon(true);
-            this[tagType].add(tag);
-            this.selectedTabs.add(tag);
-            this.getFilteredRecipes(this.filteredRecipes);
-        }
+        // if (!this[tagType].has(tag)) {
+        if (this.selectedTabs.size === 0 && this.searchField.length < 3)
+            toggleSearchIcon(true);
+        this[tagType].add(tag);
+        this.selectedTabs.add(tagType + "--" + tag);
+        this.getFilteredRecipes(this.filteredRecipes);
+        // }
     },
     addIngredientTag(tag) {
         this._addTag("ingredientTags", tag);
@@ -59,37 +59,38 @@ export const searchObject = {
      * @param {string} tag - Le tag à supprimer.
      * @param {boolean} removeTagFromUI - Indique si le tag doit être supprimé de l'interface utilisateur.
      */
-    _removeTag(tagType, tag, removeTagFromUI = false) {
+    _removeTag(tagType, tag) {
         tag = tag.toLowerCase();
         this[tagType].delete(tag);
-        this.selectedTabs.delete(tag);
+        this.selectedTabs.delete(tagType + "--" + tag);
         if (this.selectedTabs.size === 0 && this.searchField.length < 3)
             toggleSearchIcon(false);
-        if (removeTagFromUI) {
-            this.getFilteredRecipes(recipes);
-        } else {
-            this.getFilteredRecipes(this.filteredRecipes);
-        }
+        // if (removeTagFromUI) {
+        this.getFilteredRecipes(recipes);
+        // } else {
+        //     this.getFilteredRecipes(this.filteredRecipes);
+        // }
     },
     removeIngredientTag(tag) {
-        this._removeTag("ingredientTags", tag, true);
+        this._removeTag("ingredientTags", tag);
     },
     removeApplianceTag(tag) {
-        this._removeTag("applianceTags", tag, true);
+        this._removeTag("applianceTags", tag);
     },
     removeUstensilsTag(tag) {
-        this._removeTag("ustensilsTags", tag, true);
+        this._removeTag("ustensilsTags", tag);
     },
-    removeSelectedTag(tag) {
-        if (this.ingredientTags.has(tag)) {
-            this.removeIngredientTag(tag);
-        }
-        if (this.applianceTags.has(tag)) {
-            this.removeApplianceTag(tag);
-        }
-        if (this.ustensilsTags.has(tag)) {
-            this.removeUstensilsTag(tag);
-        }
+    removeSelectedTag(tag, tagType) {
+        this._removeTag(tagType, tag);
+        // if (this.ingredientTags.has(tag)) {
+        //     this.removeIngredientTag(tag);
+        // }
+        // if (this.applianceTags.has(tag)) {
+        //     this.removeApplianceTag(tag);
+        // }
+        // if (this.ustensilsTags.has(tag)) {
+        //     this.removeUstensilsTag(tag);
+        // }
     },
 
     /**
