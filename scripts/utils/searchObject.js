@@ -126,13 +126,13 @@ export const searchObject = {
      * Réinitialise l'objet de recherche à son état initial.
      */
     reset() {
-        this.filteredRecipes = [];
+        this.filteredRecipes = recipes;
         this.ingredientTags = new Set();
         this.applianceTags = new Set();
         this.ustensilsTags = new Set();
         this.searchField = "";
         this.selectedTabs = new Set();
-        this.getFilteredRecipes();
+        // this.getFilteredRecipes();
         this.setTagsLists();
     },
 
@@ -246,28 +246,33 @@ export const searchObject = {
      * @param {Array} recipesToFilter - Les recettes à filtrer (par défaut, toutes les recettes).
      * @returns {Array} - Les recettes filtrées.
      */
-    getFilteredRecipes(recipesToFilter = recipes) {
-        const start = performance.now();
-        console.log("recipesToFilter", recipesToFilter.length);
+    getFilteredRecipes(recipesToFilter = false) {
+        if (recipesToFilter) {
+            const start = performance.now();
+            console.log("recipesToFilter", recipesToFilter.length);
 
-        const result = recipesToFilter.filter((recipe) =>
-            searchObject._filterRecipe(
-                recipe,
-                searchObject.ingredientTags,
-                searchObject.applianceTags,
-                searchObject.ustensilsTags,
-                searchObject.searchField
-            )
-        );
+            const result = recipesToFilter.filter((recipe) =>
+                searchObject._filterRecipe(
+                    recipe,
+                    searchObject.ingredientTags,
+                    searchObject.applianceTags,
+                    searchObject.ustensilsTags,
+                    searchObject.searchField
+                )
+            );
 
-        searchObject._setFilteredRecipes(result);
+            searchObject._setFilteredRecipes(result);
 
-        const end = performance.now();
-        console.log(
-            "Execution time: ",
-            Math.floor((end - start) * 10000) / 10 + "μs"
-        );
+            const end = performance.now();
+            console.log(
+                "Execution time: ",
+                Math.floor((end - start) * 10000) / 10 + "μs"
+            );
 
-        return result;
+            return result;
+        } else {
+            searchObject._setFilteredRecipes(recipes);
+            return recipes;
+        }
     },
 };
