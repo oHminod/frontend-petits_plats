@@ -37,9 +37,11 @@ export function displayRecipes() {
 
     let stringOfTags = "";
 
-    if (tagsAreSelected) {
+    if (tagsAreSelected && recipes.length === 0) {
         if (selectedTags.size > 0) {
-            const selectedTagsArray = Array.from(selectedTags);
+            const selectedTagsArray = Array.from(selectedTags).map(
+                (tag) => tag.split("--")[1]
+            );
             const allButLast = selectedTagsArray.slice(
                 0,
                 selectedTagsArray.length - 1
